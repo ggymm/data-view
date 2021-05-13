@@ -1,0 +1,18 @@
+[app]
+debug = true
+addr = ":8888"
+allow_cross_domain = true
+
+[log]
+filename = "log/data-view.log"
+man_size = 256
+
+[database]
+address = "localhost"
+port = "3306"
+name = "data-view"
+username = "root"
+password = "root"
+
+[storage]
+url = "http://192.168.50.158:9000"
