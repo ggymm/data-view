@@ -30,6 +30,24 @@ type ViewInstance struct {
 	DelFlag                 int             `json:"del_flag" xorm:"comment('删除标识') INT(1)"`
 }
 
+type ChartItem struct {
+	ItemId        int64  `json:"item_id" xorm:"not null pk autoincr BIGINT(20)"`
+	InstanceId    int64  `json:"instance_id" xorm:"BIGINT(20)"`
+	ItemChartData string `json:"item_chart_data" xorm:"TEXT"`
+	ItemChartType string `json:"item_chart_type" xorm:"VARCHAR(50)"`
+	ItemChoose    string `json:"item_choose" xorm:"VARCHAR(10)"`
+	ItemData      string `json:"item_data" xorm:"TEXT"`
+	ItemHeight    int64  `json:"item_height" xorm:"BIGINT(20)"`
+	ItemI         string `json:"item_i" xorm:"VARCHAR(20)"`
+	ItemInterval  int64  `json:"item_interval" xorm:"BIGINT(20)"`
+	ItemOption    string `json:"item_option" xorm:"TEXT"`
+	ItemRefresh   string `json:"item_refresh" xorm:"VARCHAR(10)"`
+	ItemWidth     int64  `json:"item_width" xorm:"BIGINT(20)"`
+	ItemX         int64  `json:"item_x" xorm:"BIGINT(20)"`
+	ItemY         int64  `json:"item_y" xorm:"BIGINT(20)"`
+	ItemVersion   int64  `json:"item_version" xorm:"BIGINT(20)"`
+}
+
 func (m *DataViewModel) GetPage(params schema.DataViewQueryParam) ([]*ViewInstance, int64, error) {
 	var (
 		list        = make([]*ViewInstance, 0)
