@@ -3,7 +3,6 @@ package database
 import (
 	"data-view/config"
 	"data-view/logger"
-
 	_ "github.com/go-sql-driver/mysql"
 	"xorm.io/core"
 	"xorm.io/xorm"
@@ -20,10 +19,17 @@ func InitXormDB() (*xorm.Engine, func(), error) {
 }
 
 func NewGormDB() (*xorm.Engine, func(), error) {
-	connectUrl := config.Instance.Database.Username + ":" + config.Instance.Database.Password +
-		"@tcp(" + config.Instance.Database.Address + ":" + config.Instance.Database.Port +
-		")/" + config.Instance.Database.Name + "?charset=utf8&parseTime=True&loc=Local"
-	if engine, err := xorm.NewEngine("mysql", connectUrl); err != nil {
+	var connectUrl string
+	switch config.Instance.Database.Type {
+	default:
+	case "mysql":
+		connectUrl = config.Instance.Mysql.Username + ":" + config.Instance.Mysql.Password +
+			"@tcp(" + config.Instance.Mysql.Address + ":" + config.Instance.Mysql.Port +
+			")/" + config.Instance.Mysql.Name + "?charset=utf8&parseTime=True&loc=Local"
+	case "sqlite3":
+		connectUrl = config.Instance.Sqlite.Path
+	}
+	if engine, err := xorm.NewEngine(config.Instance.Database.Type, connectUrl); err != nil {
 		return nil, nil, err
 	} else {
 		engine.SetTableMapper(core.SnakeMapper{})

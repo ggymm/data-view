@@ -31,6 +31,7 @@ func (r *Router) NewRouter() (router *gin.Engine) {
 		dataSource := v1.Group("dataSource/").Use(middleware.CheckUser())
 		{
 			dataSource.GET("/", r.DataSource.GetPage)
+			dataSource.GET("/list", r.DataSource.GetPage)
 		}
 
 		dataView := v1.Group("dataView/").Use(middleware.CheckUser())

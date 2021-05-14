@@ -8,6 +8,14 @@ filename = "log/data-view.log"
 man_size = 256
 
 [database]
+type = "mysql"
+# type = "sqlite3"
+
+[sqlite]
+# 暂不支持
+path = "db/data-view.db"
+
+[mysql]
 address = "localhost"
 port = "3306"
 name = "data-view"

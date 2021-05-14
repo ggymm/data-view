@@ -9,6 +9,8 @@ type GlobalConfig struct {
 	App      appConfig
 	Log      logConfig
 	Database databaseConfig
+	Sqlite   sqliteConfig
+	Mysql    mysqlConfig
 	Storage  storageConfig
 }
 
@@ -24,6 +26,14 @@ type logConfig struct {
 }
 
 type databaseConfig struct {
+	Type string
+}
+
+type sqliteConfig struct {
+	Path string
+}
+
+type mysqlConfig struct {
 	Address  string
 	Port     string
 	Name     string

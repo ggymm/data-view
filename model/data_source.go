@@ -49,3 +49,17 @@ func (m *DataSourceModel) GetPage(params schema.DataSourceQueryParam) ([]*DataSo
 		return list, count, nil
 	}
 }
+
+func (m *DataSourceModel) GetList(businessId int64) ([]*DataSource, error) {
+	var (
+		list  = make([]*DataSource, 0)
+		query = make(map[string]interface{})
+	)
+	query["business_id"] = businessId
+	query["del_flag"] = IsExist
+	// 获取查询列表
+	if err := m.Engine.Where(query).OrderBy(DefaultOrder).Find(&list); err != nil {
+		return list, err
+	}
+	return list, nil
+}

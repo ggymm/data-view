@@ -31,3 +31,13 @@ func (h *DataSourceHandler) GetPage(c *gin.Context) {
 		return
 	}
 }
+
+func (h *DataSourceHandler) GetList(c *gin.Context) {
+	if list, err := h.DataSourceModel.GetList(c.GetInt64("BusinessId")); err != nil {
+		httpError(c, http.StatusInternalServerError, err)
+		return
+	} else {
+		returnJson(c, true, list)
+		return
+	}
+}
