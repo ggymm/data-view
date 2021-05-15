@@ -29,3 +29,18 @@ func (h *DataViewHandler) GetPage(c *gin.Context) {
 		return
 	}
 }
+
+func (h *DataViewHandler) GetChartData(c *gin.Context) {
+	var params schema.ChartDataParams
+	if err := ParseQuery(c, &params); err != nil {
+		httpError(c, http.StatusBadRequest, err)
+		return
+	}
+	if result, err := h.DataViewModel.GetChartData(params); err != nil {
+		httpError(c, http.StatusInternalServerError, err)
+		return
+	} else {
+		returnJson(c, true, result)
+		return
+	}
+}

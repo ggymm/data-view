@@ -1,12 +1,10 @@
 package handler
 
 import (
-	"encoding/json"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
-	"github.com/go-playground/validator/v10"
 	"github.com/google/wire"
 )
 
@@ -37,23 +35,6 @@ func ParseForm(c *gin.Context, obj interface{}) error {
 		return err
 	}
 	return nil
-}
-
-func validatorErrorData(err error) string {
-	var s string
-	switch err.(type) {
-	case validator.ValidationErrors:
-		for _, err := range err.(validator.ValidationErrors) {
-			if err != nil {
-				s += "{" + err.Field() + "字段不符合规则}"
-			}
-		}
-		return s
-	case *json.SyntaxError:
-		return err.Error()
-	default:
-		return err.Error()
-	}
 }
 
 // 返回业务JSON数据

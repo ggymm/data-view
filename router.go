@@ -37,6 +37,7 @@ func (r *Router) NewRouter() (router *gin.Engine) {
 		dataView := v1.Group("dataView/").Use(middleware.CheckUser())
 		{
 			dataView.GET("/", r.DataView.GetPage)
+			dataView.GET("/chartData", r.DataView.GetChartData)
 		}
 	}
 
