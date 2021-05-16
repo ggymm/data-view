@@ -2,6 +2,7 @@ package model
 
 import (
 	"data-view/schema"
+	"errors"
 	"github.com/google/wire"
 	"xorm.io/xorm"
 )
@@ -62,4 +63,19 @@ func (m *DataSourceModel) GetList(businessId int64) ([]*DataSource, error) {
 		return list, err
 	}
 	return list, nil
+}
+
+func (m *DataSourceModel) Get(id int64) (*DataSource, error) {
+	var d = new(DataSource)
+	d.DataSourceId = id
+	d.DelFlag = IsExist
+	if has, err := m.Engine.Get(d); err == nil {
+		if has {
+			return d, err
+		} else {
+			return nil, errors.New("数据源不存在")
+		}
+	} else {
+		return nil, err
+	}
 }

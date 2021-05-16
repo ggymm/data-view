@@ -3,6 +3,7 @@ package model
 import "github.com/google/wire"
 
 const (
+	EmptyString  = ""
 	DefaultOrder = "edit_time desc"
 	IsExist      = 1
 )
@@ -10,4 +11,13 @@ const (
 var SetModel = wire.NewSet(
 	DataSourceModelSet,
 	DataViewModelSet,
+)
+
+const (
+	DataBase  = "DataBase"
+	CSV       = "CSV"
+	MySQL     = "MySQL"
+	Oracle    = "Oracle"
+	SQLServer = "SQLServer"
+	DB2       = "DB2"
 )

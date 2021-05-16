@@ -8,7 +8,7 @@ type DataViewQueryParam struct {
 type ChartDataParams struct {
 	DataSourceType string `json:"dataSourceType"`
 	ChartType      string `json:"chartType"`
-	Database       string `json:"database"`
+	Database       int64  `json:"database"`
 	FileName       string `json:"fileName"`
 	Sql            string `json:"sql"`
 	Legend         string `json:"legend"`

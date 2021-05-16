@@ -11,7 +11,8 @@ import (
 var DataViewHandlerSet = wire.NewSet(wire.Struct(new(DataViewHandler), "*"))
 
 type DataViewHandler struct {
-	DataViewModel *model.DataViewModel
+	DataViewModel   *model.DataViewModel
+	DataSourceModel *model.DataSourceModel
 }
 
 func (h *DataViewHandler) GetPage(c *gin.Context) {
@@ -31,12 +32,17 @@ func (h *DataViewHandler) GetPage(c *gin.Context) {
 }
 
 func (h *DataViewHandler) GetChartData(c *gin.Context) {
-	var params schema.ChartDataParams
+	var params *schema.ChartDataParams
 	if err := ParseQuery(c, &params); err != nil {
 		httpError(c, http.StatusBadRequest, err)
 		return
 	}
-	if result, err := h.DataViewModel.GetChartData(params); err != nil {
+	dataSource, err := h.DataSourceModel.Get(params.Database)
+	if err != nil {
+		httpError(c, http.StatusInternalServerError, err)
+		return
+	}
+	if result, err := h.DataViewModel.GetChartData(params, dataSource); err != nil {
 		httpError(c, http.StatusInternalServerError, err)
 		return
 	} else {
