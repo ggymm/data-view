@@ -29,7 +29,8 @@ func BuildInjector() (*Injector, func(), error) {
 		Engine: engine,
 	}
 	dataViewHandler := &handler.DataViewHandler{
-		DataViewModel: dataViewModel,
+		DataViewModel:   dataViewModel,
+		DataSourceModel: dataSourceModel,
 	}
 	router := &Router{
 		DataSource: dataSourceHandler,

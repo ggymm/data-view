@@ -7,19 +7,19 @@ type DataViewQueryParam struct {
 
 type ChartDataParams struct {
 	// 基础字段
-	DataSourceType string `json:"dataSourceType"`
-	ChartType      string `json:"chartType"`
-	Database       int64  `json:"database"`
-	FileName       string `json:"fileName"`
-	Sql            string `json:"sql"`
-	OrderBy        string `json:"orderBy"`
+	DataSourceType string `form:"dataSourceType"`
+	ChartType      string `form:"chartType"`
+	Database       int64  `form:"database"`
+	FileName       string `form:"fileName"`
+	Sql            string `form:"sql"`
+	OrderBy        string `form:"orderBy"`
 
 	// 图表扩展字段
-	Legend   string `json:"legend"`
-	Name     string `json:"name"`
-	Value    string `json:"value"`
-	Max      string `json:"max"`
-	Stack    string `json:"stack"`
-	Data     string `json:"data"`
-	Province string `json:"province"`
+	Legend   string `form:"legend"`
+	Name     string `form:"name"`
+	Value    string `form:"value"`
+	Max      string `form:"max"`
+	Stack    string `form:"stack"`
+	Data     string `form:"data"`
+	Province string `form:"province"`
 }

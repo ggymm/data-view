@@ -13,14 +13,12 @@ var DatasetGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB,
 	}
 
 	var (
-		items   = make([]map[string]string, 0)
-		results = make([]interface{}, 0)
-		legends []string
-		values  = make([][]string, 0)
+		hasLegend = len(params.Legend) != 0 && params.Legend != "无"
+		items     = make([]map[string]string, 0)
+		dataset   = make([][]string, 0)
+		legends   = make([]string, 0)
+		values    = make([][]string, 0)
 	)
-	if len(params.Legend) != 0 {
-		legends = make([]string, 0)
-	}
 
 	rows, err := db.Queryx(params.Sql)
 	if err != nil {
@@ -52,15 +50,18 @@ var DatasetGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB,
 			if key == params.Value {
 				item[Value] = StrVal(value)
 			}
-			if len(params.Legend) != 0 {
-				item[Legend] = StrVal(value)
-				legends = append(legends, StrVal(value))
+			if hasLegend {
+				if key == params.Legend {
+					item[Legend] = StrVal(value)
+					legends = append(legends, StrVal(value))
+				}
 			}
 		}
 		items = append(items, item)
 	}
 
-	if len(params.Legend) != 0 {
+	// 构造dataset的内容
+	if hasLegend {
 		legends = Duplicate(legends)
 		for _, legend := range legends {
 		LegendItems:
@@ -82,6 +83,7 @@ var DatasetGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB,
 				}
 			}
 		}
+		legends = append([]string{Legend}, legends...)
 	} else {
 	Items:
 		for _, item := range items {
@@ -101,10 +103,11 @@ var DatasetGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB,
 		}
 	}
 
-	legends = append([]string{Legend}, legends...)
-	results = append(results, legends, values)
+	// 构造dataset
+	dataset = append(dataset, legends)
+	dataset = append(dataset, values...)
 	return map[string]interface{}{
-		"source": results,
+		"source": dataset,
 	}, nil
 }, RunGetDataFromCsv: func(chartDataParams *schema.ChartDataParams) (map[string]interface{}, error) {
 	return nil, nil
