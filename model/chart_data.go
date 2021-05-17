@@ -1,12 +1,15 @@
 package model
 
 import (
-	"data-view/model/charts"
-	"data-view/schema"
-	"database/sql"
 	"errors"
 	"fmt"
 	"strings"
+
+	"data-view/model/charts"
+	"data-view/schema"
+
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/jmoiron/sqlx"
 )
 
 var ChartDataHandlers = make(map[string]charts.ChartData)
@@ -42,13 +45,13 @@ func init() {
 	//ChartDataHandlers["gauge"] = charts.GaugeGetDataHandle
 }
 
-func (m *DataViewModel) GetChartData(params *schema.ChartDataParams, dataSource *DataSource) (string, error) {
+func (m *DataViewModel) GetChartData(params *schema.ChartDataParams, dataSource *DataSource) (map[string]interface{}, error) {
 	var (
 		err        error
-		db         *sql.DB
-		dataResult string
+		db         *sqlx.DB
+		dataResult map[string]interface{}
 	)
-	defer func(db *sql.DB) {
+	defer func(db *sqlx.DB) {
 		_ = db.Close()
 	}(db)
 	// 此处判断图表类型
@@ -59,21 +62,20 @@ func (m *DataViewModel) GetChartData(params *schema.ChartDataParams, dataSource 
 		// 构建数据库访问对象
 		dataSourceType := dataSource.DataSourceType
 		if strings.EqualFold(dataSourceType, MySQL) {
-			urlTemplate := "%s:%s@tcp(%s:%d)/%s?charset=utf8&multiStatements=true"
-			url := fmt.Sprintf(urlTemplate,
+			url := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8&multiStatements=true",
 				dataSource.DataSourceUsername,
 				dataSource.DataSourcePassword,
 				dataSource.DataSourceIp,
 				dataSource.DataSourcePort,
 				dataSource.DataSourceDatabaseName)
-			if db, err = sql.Open("mysql", url); err != nil {
-				return EmptyString, err
+			if db, err = sqlx.Open("mysql", url); err != nil {
+				return nil, err
 			}
 		} else if strings.EqualFold(dataSourceType, Oracle) {
 		} else if strings.EqualFold(dataSourceType, SQLServer) {
 		} else if strings.EqualFold(dataSourceType, DB2) {
 		} else {
-			return EmptyString, errors.New("数据源类型错误")
+			return nil, errors.New("数据源类型错误")
 		}
 		if dataResult, err = ChartDataHandlers[chartType].GetDataFromDB(db, params); err != nil {
 			return dataResult, err
@@ -85,6 +87,6 @@ func (m *DataViewModel) GetChartData(params *schema.ChartDataParams, dataSource 
 		}
 		return dataResult, nil
 	} else {
-		return EmptyString, errors.New("数据源类型错误")
+		return nil, errors.New("数据源类型错误")
 	}
 }
