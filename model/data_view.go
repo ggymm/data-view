@@ -3,8 +3,10 @@ package model
 import (
 	"data-view/config"
 	"data-view/schema"
-
+	"errors"
 	"github.com/google/wire"
+	"strconv"
+	"strings"
 	"xorm.io/xorm"
 )
 
@@ -16,7 +18,8 @@ type DataViewModel struct {
 
 type ViewInstance struct {
 	InstanceId              int64           `json:"instance_id" xorm:"not null pk autoincr comment('实例ID') BIGINT(20)"`
-	InstanceBackgroundColor string          `json:"instance_background_color" xorm:"comment('背景颜色') VARCHAR(20)"`
+	BusinessId              int64           `json:"business_id" xorm:"comment('企业ID') BIGINT(20)"`
+	InstanceBackgroundColor string          `json:"instanceBackgroundColor" xorm:"comment('背景颜色') VARCHAR(20)"`
 	InstanceBackgroundImg   string          `json:"instance_background_img" xorm:"comment('背景图') VARCHAR(50)"`
 	InstanceWidth           int64           `json:"instance_width" xorm:"comment('宽') BIGINT(20)"`
 	InstanceHeight          int64           `json:"instance_height" xorm:"comment('高') BIGINT(20)"`
@@ -30,22 +33,40 @@ type ViewInstance struct {
 	DelFlag                 int             `json:"del_flag" xorm:"comment('删除标识') INT(1)"`
 }
 
-type ChartItem struct {
+type ViewChartItem struct {
 	ItemId        int64  `json:"item_id" xorm:"not null pk autoincr BIGINT(20)"`
 	InstanceId    int64  `json:"instance_id" xorm:"BIGINT(20)"`
-	ItemChartData string `json:"item_chart_data" xorm:"TEXT"`
-	ItemChartType string `json:"item_chart_type" xorm:"VARCHAR(50)"`
-	ItemChoose    string `json:"item_choose" xorm:"VARCHAR(10)"`
-	ItemData      string `json:"item_data" xorm:"TEXT"`
-	ItemHeight    int64  `json:"item_height" xorm:"BIGINT(20)"`
-	ItemI         string `json:"item_i" xorm:"VARCHAR(20)"`
-	ItemInterval  int64  `json:"item_interval" xorm:"BIGINT(20)"`
-	ItemOption    string `json:"item_option" xorm:"TEXT"`
-	ItemRefresh   string `json:"item_refresh" xorm:"VARCHAR(10)"`
-	ItemWidth     int64  `json:"item_width" xorm:"BIGINT(20)"`
-	ItemX         int64  `json:"item_x" xorm:"BIGINT(20)"`
-	ItemY         int64  `json:"item_y" xorm:"BIGINT(20)"`
-	ItemVersion   int64  `json:"item_version" xorm:"BIGINT(20)"`
+	ItemChartData string `json:"chartData" xorm:"TEXT"`
+	ItemChartType string `json:"chartType" xorm:"VARCHAR(50)"`
+	ItemChoose    string `json:"choose" xorm:"VARCHAR(10)"`
+	ItemData      string `json:"data" xorm:"TEXT"`
+	ItemHeight    int64  `json:"height" xorm:"BIGINT(20)"`
+	ItemI         string `json:"i" xorm:"VARCHAR(20)"`
+	ItemInterval  int64  `json:"interval" xorm:"BIGINT(20)"`
+	ItemOption    string `json:"option" xorm:"TEXT"`
+	ItemRefresh   string `json:"refresh" xorm:"VARCHAR(10)"`
+	ItemWidth     int64  `json:"width" xorm:"BIGINT(20)"`
+	ItemX         int64  `json:"x" xorm:"BIGINT(20)"`
+	ItemY         int64  `json:"y" xorm:"BIGINT(20)"`
+	ItemVersion   int64  `json:"version" xorm:"BIGINT(20)"`
+}
+
+type ViewInstancePro struct {
+	ViewInstance `xorm:"extends"`
+	ChartItems   []*ViewChartItem `json:"chart_items" xorm:"-"`
+	StartIndex   int64            `json:"start_index" xorm:"-"`
+}
+
+func (ViewInstancePro) TableName() string {
+	return "view_instance"
+}
+
+func (vip *ViewInstancePro) setStartIndex() {
+	chartItems := vip.ChartItems
+	itemI := chartItems[len(chartItems)-1].ItemI
+	index := strings.Replace(itemI, "chart", "", -1)
+	i, _ := strconv.ParseInt(index, 10, 64)
+	vip.StartIndex = i + 1
 }
 
 func (m *DataViewModel) GetPage(params schema.DataViewQueryParam) ([]*ViewInstance, int64, error) {
@@ -71,5 +92,32 @@ func (m *DataViewModel) GetPage(params schema.DataViewQueryParam) ([]*ViewInstan
 		return list, count, err
 	} else {
 		return list, count, nil
+	}
+}
+
+func (m *DataViewModel) Get(id, businessId int64) (*ViewInstancePro, error) {
+	// 获取数据可视化实例
+	var v = new(ViewInstancePro)
+	v.InstanceId = id
+	v.BusinessId = businessId
+	v.DelFlag = IsExist
+	if has, err := m.Engine.Get(v); err == nil {
+		if has {
+			// 获取图表列表
+			chartItems := make([]*ViewChartItem, 0)
+			if err := m.Engine.Where(map[string]interface{}{
+				"instance_id":  id,
+				"item_version": v.InstanceVersion,
+			}).OrderBy("REPLACE (item_i, 'chart', '') + 0").Find(&chartItems); err != nil {
+				return v, err
+			}
+			v.ChartItems = chartItems
+			v.setStartIndex()
+			return v, err
+		} else {
+			return nil, errors.New("数据不存在")
+		}
+	} else {
+		return nil, err
 	}
 }

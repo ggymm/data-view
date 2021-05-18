@@ -25,6 +25,12 @@ func BuildInjector() (*Injector, func(), error) {
 	dataSourceHandler := &handler.DataSourceHandler{
 		DataSourceModel: dataSourceModel,
 	}
+	imageModel := &model.ImageModel{
+		Engine: engine,
+	}
+	imageHandler := &handler.ImageHandler{
+		ImageModel: imageModel,
+	}
 	dataViewModel := &model.DataViewModel{
 		Engine: engine,
 	}
@@ -34,6 +40,7 @@ func BuildInjector() (*Injector, func(), error) {
 	}
 	router := &Router{
 		DataSource: dataSourceHandler,
+		Image:      imageHandler,
 		DataView:   dataViewHandler,
 	}
 	injector := &Injector{

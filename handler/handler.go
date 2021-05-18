@@ -10,6 +10,7 @@ import (
 
 var SetHandler = wire.NewSet(
 	DataSourceHandlerSet,
+	ImageHandlerSet,
 	DataViewHandlerSet,
 )
 

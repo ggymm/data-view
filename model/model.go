@@ -10,6 +10,7 @@ const (
 
 var SetModel = wire.NewSet(
 	DataSourceModelSet,
+	ImageModelSet,
 	DataViewModelSet,
 )
 

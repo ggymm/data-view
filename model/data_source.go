@@ -1,8 +1,10 @@
 package model
 
 import (
-	"data-view/schema"
 	"errors"
+
+	"data-view/schema"
+
 	"github.com/google/wire"
 	"xorm.io/xorm"
 )
