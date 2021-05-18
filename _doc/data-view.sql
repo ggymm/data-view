@@ -11,7 +11,7 @@
  Target Server Version : 50732
  File Encoding         : 65001
 
- Date: 14/05/2021 20:18:17
+ Date: 18/05/2021 20:45:45
 */
 
 SET NAMES utf8mb4;
@@ -154,6 +154,7 @@ INSERT INTO `chart_item` VALUES (1851, 76, '{\"dataSourceType\":\"DataBase\",\"d
 DROP TABLE IF EXISTS `data_source`;
 CREATE TABLE `data_source`  (
   `data_source_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `business_id` bigint(20) NULL DEFAULT NULL COMMENT '企业ID',
   `data_source_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '数据源名称',
   `data_source_type` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '数据源类型',
   `data_source_database_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '数据源的数据库名称',
@@ -172,24 +173,25 @@ CREATE TABLE `data_source`  (
 -- ----------------------------
 -- Records of data_source
 -- ----------------------------
-INSERT INTO `data_source` VALUES (5, '可视化数据源', 'MySQL', 'datav_template', '127.0.0.1', 3306, 'root', 'root', '2018-08-01 23:17:34', 1, '2018-08-21 14:12:00', 1, 1);
-INSERT INTO `data_source` VALUES (6, '数据库数据源', 'MySQL', 'bigdata', '127.0.0.1', 3306, 'root', 'root', '2018-08-02 17:07:12', 1, '2018-08-02 17:07:12', 1, 1);
-INSERT INTO `data_source` VALUES (7, 'bigdata', 'MySQL', 'bigdata', '127.0.0.1', 3306, 'root', 'root', '2018-08-21 14:12:57', 1, '2018-08-21 14:13:05', 1, 1);
-INSERT INTO `data_source` VALUES (9, 'data_view_template', 'MySQL', 'data_view_template', '127.0.0.1', 3306, 'root', 'root', '2019-04-07 12:56:26', 1, '2019-04-07 12:56:26', 1, 1);
-INSERT INTO `data_source` VALUES (10, 'bigdata', 'MySQL', 'bigdata', '127.0.0.1', 3306, 'root', 'root', '2019-04-07 12:59:19', 1, '2019-04-07 12:59:19', 1, 1);
-INSERT INTO `data_source` VALUES (11, '数据库数据源1', 'MySQL', 'bigdata', '127.0.0.1', 3306, 'root', 'root', '2019-04-07 14:14:24', 1, '2019-04-20 19:10:53', 1, 1);
-INSERT INTO `data_source` VALUES (12, 'test_1', 'MySQL', 'bigdata', '127.0.0.1', 3306, 'root', 'root', '2019-04-13 17:48:50', 1, '2019-04-13 17:52:22', 1, 1);
-INSERT INTO `data_source` VALUES (13, '开发平台1', 'MySQL', 'develop-platform', '127.0.0.1', 3306, 'root', 'root', '2020-02-14 18:44:24', 1, '2020-02-14 20:25:09', 1, 1);
+INSERT INTO `data_source` VALUES (5, 1, '可视化数据源', 'MySQL', 'datav_template', '127.0.0.1', 3306, 'root', 'root', '2018-08-01 23:17:34', 1, '2018-08-21 14:12:00', 1, 1);
+INSERT INTO `data_source` VALUES (6, 1, '数据库数据源', 'MySQL', 'bigdata', '127.0.0.1', 3306, 'root', 'root', '2018-08-02 17:07:12', 1, '2018-08-02 17:07:12', 1, 1);
+INSERT INTO `data_source` VALUES (7, 1, 'bigdata', 'MySQL', 'bigdata', '127.0.0.1', 3306, 'root', 'root', '2018-08-21 14:12:57', 1, '2018-08-21 14:13:05', 1, 1);
+INSERT INTO `data_source` VALUES (9, 1, 'data-view-template', 'MySQL', 'data-view-template', '127.0.0.1', 3306, 'root', 'root', '2019-04-07 12:56:26', 1, '2019-04-07 12:56:26', 1, 1);
+INSERT INTO `data_source` VALUES (10, 1, 'bigdata', 'MySQL', 'bigdata', '127.0.0.1', 3306, 'root', 'root', '2019-04-07 12:59:19', 1, '2019-04-07 12:59:19', 1, 1);
+INSERT INTO `data_source` VALUES (11, 1, '数据库数据源1', 'MySQL', 'bigdata', '127.0.0.1', 3306, 'root', 'root', '2019-04-07 14:14:24', 1, '2019-04-20 19:10:53', 1, 1);
+INSERT INTO `data_source` VALUES (12, 1, 'test_1', 'MySQL', 'bigdata', '127.0.0.1', 3306, 'root', 'root', '2019-04-13 17:48:50', 1, '2019-04-13 17:52:22', 1, 1);
+INSERT INTO `data_source` VALUES (13, 1, '开发平台1', 'MySQL', 'develop-platform', '127.0.0.1', 3306, 'root', 'root', '2020-02-14 18:44:24', 1, '2020-02-14 20:25:09', 1, 1);
 
 -- ----------------------------
--- Table structure for image_bg
+-- Table structure for image
 -- ----------------------------
-DROP TABLE IF EXISTS `image_bg`;
-CREATE TABLE `image_bg`  (
+DROP TABLE IF EXISTS `image`;
+CREATE TABLE `image`  (
   `image_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `image_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `image_path` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `image_size` bigint(20) NULL DEFAULT NULL,
+  `image_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图片名称',
+  `image_path` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图片位置',
+  `image_size` bigint(20) NULL DEFAULT NULL COMMENT '图片大小',
+  `business_id` bigint(20) NULL DEFAULT NULL COMMENT '企业ID',
   `add_time` datetime(0) NULL DEFAULT NULL COMMENT '添加时间',
   `add_user` bigint(20) NULL DEFAULT NULL COMMENT '添加者',
   `edit_time` datetime(0) NULL DEFAULT NULL COMMENT '编辑时间',
@@ -199,13 +201,13 @@ CREATE TABLE `image_bg`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of image_bg
+-- Records of image
 -- ----------------------------
-INSERT INTO `image_bg` VALUES (9, '云资源监控-背景.png', '955fe43d\\a0e2aa75\\4a64cedd\\77e27767', 61983, '2019-08-30 10:55:07', 1, '2019-08-30 10:55:07', 1, 1);
-INSERT INTO `image_bg` VALUES (10, '企业实时销售数据-背景.png', 'c1bf718c\\3eba1835\\390477c1\\ce63a9ca', 758743, '2020-01-30 16:37:54', 1, '2020-01-30 16:37:54', 1, 1);
-INSERT INTO `image_bg` VALUES (11, '通用模板1-背景.png', '12ed5441\\15f39c6c\\f00cbd6c\\b3cd0eb2', 27247, '2020-02-21 15:36:41', 1, '2020-02-21 15:36:41', 1, 1);
-INSERT INTO `image_bg` VALUES (12, '云服务监控-背景.png', 'ba94a473\\0fcf784b\\48aeb679\\e02dbdbc', 44365, '2020-02-23 13:31:42', 1, '2020-02-23 13:31:42', 1, 1);
-INSERT INTO `image_bg` VALUES (13, '零售行业数据可视化-背景.png', '5d51fb99\\48ac7e3e\\dafcf9d5\\51339473', 545340, '2020-02-28 13:26:23', 1, '2020-02-28 13:26:23', 1, 1);
+INSERT INTO `image` VALUES (9, '云资源监控-背景.png', '955fe43d\\a0e2aa75\\4a64cedd\\77e27767', 61983, 1, '2019-08-30 10:55:07', 1, '2019-08-30 10:55:07', 1, 1);
+INSERT INTO `image` VALUES (10, '企业实时销售数据-背景.png', 'c1bf718c\\3eba1835\\390477c1\\ce63a9ca', 758743, 1, '2020-01-30 16:37:54', 1, '2020-01-30 16:37:54', 1, 1);
+INSERT INTO `image` VALUES (11, '通用模板1-背景.png', '12ed5441\\15f39c6c\\f00cbd6c\\b3cd0eb2', 27247, 1, '2020-02-21 15:36:41', 1, '2020-02-21 15:36:41', 1, 1);
+INSERT INTO `image` VALUES (12, '云服务监控-背景.png', 'ba94a473\\0fcf784b\\48aeb679\\e02dbdbc', 44365, 1, '2020-02-23 13:31:42', 1, '2020-02-23 13:31:42', 1, 1);
+INSERT INTO `image` VALUES (13, '零售行业数据可视化-背景.png', '5d51fb99\\48ac7e3e\\dafcf9d5\\51339473', 545340, 1, '2020-02-28 13:26:23', 1, '2020-02-28 13:26:23', 1, 1);
 
 -- ----------------------------
 -- Table structure for screen_instance
