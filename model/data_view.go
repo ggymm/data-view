@@ -1,12 +1,14 @@
 package model
 
 import (
-	"data-view/config"
-	"data-view/schema"
 	"errors"
-	"github.com/google/wire"
 	"strconv"
 	"strings"
+
+	"data-view/config"
+	"data-view/schema"
+
+	"github.com/google/wire"
 	"xorm.io/xorm"
 )
 
@@ -19,18 +21,18 @@ type DataViewModel struct {
 type ViewInstance struct {
 	InstanceId              int64           `json:"instance_id" xorm:"not null pk autoincr comment('实例ID') BIGINT(20)"`
 	BusinessId              int64           `json:"business_id" xorm:"comment('企业ID') BIGINT(20)"`
-	InstanceBackgroundColor string          `json:"instanceBackgroundColor" xorm:"comment('背景颜色') VARCHAR(20)"`
+	InstanceBackgroundColor string          `json:"instance_background_color" xorm:"comment('背景颜色') VARCHAR(20)"`
 	InstanceBackgroundImg   string          `json:"instance_background_img" xorm:"comment('背景图') VARCHAR(50)"`
 	InstanceWidth           int64           `json:"instance_width" xorm:"comment('宽') BIGINT(20)"`
 	InstanceHeight          int64           `json:"instance_height" xorm:"comment('高') BIGINT(20)"`
 	InstanceTitle           string          `json:"instance_title" xorm:"comment('标题') VARCHAR(50)"`
 	InstanceViewThumbnail   string          `json:"instance_view_thumbnail" xorm:"comment('缩略图') VARCHAR(50)"`
 	InstanceVersion         int64           `json:"instance_version" xorm:"comment('版本号') BIGINT(20)"`
-	AddUser                 int64           `json:"add_user" xorm:"comment('添加用户') BIGINT(20)"`
-	AddTime                 schema.JsonTime `json:"add_time" xorm:"comment('添加时间') DATETIME"`
-	EditUser                int64           `json:"edit_user" xorm:"comment('更新用户') BIGINT(20)"`
-	EditTime                schema.JsonTime `json:"edit_time" xorm:"comment('更新时间') DATETIME"`
-	DelFlag                 int             `json:"del_flag" xorm:"comment('删除标识') INT(1)"`
+	CreateId                int64           `json:"create_id" xorm:"comment('创建者ID') BIGINT(20)"`
+	CreateTime              schema.JsonTime `json:"create_time" xorm:"comment('创建时间') DATETIME"`
+	UpdateId                int64           `json:"update_id" xorm:"comment('更新者ID') BIGINT(20)"`
+	UpdateTime              schema.JsonTime `json:"update_time" xorm:"comment('更新时间') DATETIME"`
+	DelFlag                 int             `json:"del_flag" xorm:"comment('删除标识（-1：不存在；1：存在）') TINYINT(4)"`
 }
 
 type ViewChartItem struct {
@@ -79,7 +81,7 @@ func (m *DataViewModel) GetPage(params schema.DataViewQueryParam) ([]*ViewInstan
 	query["business_id"] = params.BusinessId
 	query["del_flag"] = IsExist
 	// 获取列表
-	columns := []string{"instance_id", "instance_width", "instance_height", "instance_title", "instance_view_thumbnail", "edit_time"}
+	columns := []string{"instance_id", "instance_width", "instance_height", "instance_title", "instance_view_thumbnail", "update_time"}
 	if err := m.Engine.Cols(columns...).Where(query).Limit(params.Size, params.Offset()).OrderBy(DefaultOrder).Find(&list); err != nil {
 		return list, count, err
 	}
@@ -120,4 +122,12 @@ func (m *DataViewModel) Get(id, businessId int64) (*ViewInstancePro, error) {
 	} else {
 		return nil, err
 	}
+}
+
+func (m *DataViewModel) Create(vip *ViewInstancePro) error {
+	return nil
+}
+
+func (m *DataViewModel) Update(vip *ViewInstancePro) error {
+	return nil
 }

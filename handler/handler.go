@@ -1,10 +1,12 @@
 package handler
 
 import (
+	"encoding/json"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
+	"github.com/go-playground/validator/v10"
 	"github.com/google/wire"
 )
 
@@ -48,4 +50,21 @@ func returnJson(c *gin.Context, success bool, data interface{}) {
 
 func httpError(c *gin.Context, httpCode int, message interface{}) {
 	c.JSON(httpCode, gin.H{"message": message})
+}
+
+func validatorErrorData(err error) string {
+	var s string
+	switch err.(type) {
+	case validator.ValidationErrors:
+		for _, err := range err.(validator.ValidationErrors) {
+			if err != nil {
+				s += "{" + err.Field() + "字段不符合规则}"
+			}
+		}
+		return s
+	case *json.SyntaxError:
+		return err.Error()
+	default:
+		return err.Error()
+	}
 }

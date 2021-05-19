@@ -1,8 +1,9 @@
 package config
 
 import (
-	"github.com/pelletier/go-toml"
 	"os"
+
+	"github.com/pelletier/go-toml"
 )
 
 type GlobalConfig struct {

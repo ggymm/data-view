@@ -25,11 +25,11 @@ type DataSource struct {
 	DataSourcePort         int             `json:"data_source_port" xorm:"comment('数据源的端口号') INT(5)"`
 	DataSourceUsername     string          `json:"data_source_username" xorm:"comment('数据源的账户名称') VARCHAR(50)"`
 	DataSourcePassword     string          `json:"data_source_password" xorm:"comment('数据源的账户密码') VARCHAR(50)"`
-	AddTime                schema.JsonTime `json:"add_time" xorm:"comment('添加时间') DATETIME"`
-	AddUser                int64           `json:"add_user" xorm:"comment('添加者') BIGINT(20)"`
-	EditTime               schema.JsonTime `json:"edit_time" xorm:"comment('编辑时间') DATETIME"`
-	EditUser               int64           `json:"edit_user" xorm:"comment('编辑者') BIGINT(20)"`
-	DelFlag                int             `json:"del_flag" xorm:"comment('是否删除（1：存在；0：删除）') INT(1)"`
+	CreateId               int64           `json:"create_id" xorm:"comment('创建者ID') BIGINT(20)"`
+	CreateTime             schema.JsonTime `json:"create_time" xorm:"comment('创建时间') DATETIME"`
+	UpdateId               int64           `json:"update_id" xorm:"comment('更新者ID') BIGINT(20)"`
+	UpdateTime             schema.JsonTime `json:"update_time" xorm:"comment('更新时间') DATETIME"`
+	DelFlag                int             `json:"del_flag" xorm:"comment('删除标识（-1：不存在；1：存在）') TINYINT(4)"`
 }
 
 func (m *DataSourceModel) GetPage(params schema.DataSourceQueryParam) ([]*DataSource, int64, error) {
@@ -42,7 +42,7 @@ func (m *DataSourceModel) GetPage(params schema.DataSourceQueryParam) ([]*DataSo
 	query["business_id"] = params.BusinessId
 	query["del_flag"] = IsExist
 	// 获取列表
-	columns := []string{"data_source_id", "data_source_name", "data_source_type", "data_source_database_name", "data_source_ip", "data_source_username", "edit_time"}
+	columns := []string{"data_source_id", "data_source_name", "data_source_type", "data_source_database_name", "data_source_ip", "data_source_username", "update_time"}
 	if err := m.Engine.Cols(columns...).Where(query).Limit(params.Size, params.Offset()).OrderBy(DefaultOrder).Find(&list); err != nil {
 		return list, count, err
 	}

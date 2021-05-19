@@ -1,12 +1,14 @@
 package handler
 
 import (
-	"data-view/model"
-	"data-view/schema"
-	"github.com/gin-gonic/gin"
-	"github.com/google/wire"
 	"net/http"
 	"strconv"
+
+	"data-view/model"
+	"data-view/schema"
+
+	"github.com/gin-gonic/gin"
+	"github.com/google/wire"
 )
 
 var DataViewHandlerSet = wire.NewSet(wire.Struct(new(DataViewHandler), "*"))
@@ -44,6 +46,47 @@ func (h *DataViewHandler) Get(c *gin.Context) {
 		return
 	} else {
 		returnJson(c, true, v)
+		return
+	}
+}
+
+func (h *DataViewHandler) Create(c *gin.Context) {
+	var createReq schema.CreateDataViewReq
+	if err := ParseJSON(c, &createReq); err != nil {
+		httpError(c, http.StatusBadRequest, validatorErrorData(err))
+		return
+	}
+
+	vip := new(model.ViewInstancePro)
+	vip.BusinessId = c.GetInt64("BusinessId")
+	vip.CreateId = c.GetInt64("UserId")
+	vip.UpdateId = c.GetInt64("UserId")
+
+	if err := h.DataViewModel.Create(vip); err != nil {
+		returnJson(c, false, err.Error())
+		return
+	} else {
+		returnJson(c, true, "success")
+		return
+	}
+}
+
+func (h *DataViewHandler) Update(c *gin.Context) {
+	var updateReq schema.UpdateDataViewReq
+	if err := ParseJSON(c, &updateReq); err != nil {
+		httpError(c, http.StatusBadRequest, validatorErrorData(err))
+		return
+	}
+
+	vip := new(model.ViewInstancePro)
+	vip.BusinessId = c.GetInt64("BusinessId")
+	vip.UpdateId = c.GetInt64("UserId")
+
+	if err := h.DataViewModel.Create(vip); err != nil {
+		returnJson(c, false, err.Error())
+		return
+	} else {
+		returnJson(c, true, "success")
 		return
 	}
 }

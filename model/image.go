@@ -1,8 +1,8 @@
 package model
 
 import (
+	"data-view/config"
 	"data-view/schema"
-	"time"
 
 	"github.com/google/wire"
 	"xorm.io/xorm"
@@ -15,16 +15,16 @@ type ImageModel struct {
 }
 
 type Image struct {
-	ImageId    int64     `json:"image_id" xorm:"not null pk autoincr BIGINT(20)"`
-	ImageName  string    `json:"image_name" xorm:"comment('图片名称') VARCHAR(200)"`
-	ImagePath  string    `json:"image_path" xorm:"comment('图片位置') VARCHAR(500)"`
-	ImageSize  int64     `json:"image_size" xorm:"comment('图片大小') BIGINT(20)"`
-	BusinessId int64     `json:"business_id" xorm:"comment('企业ID') BIGINT(20)"`
-	AddTime    time.Time `json:"add_time" xorm:"comment('添加时间') DATETIME"`
-	AddUser    int64     `json:"add_user" xorm:"comment('添加者') BIGINT(20)"`
-	EditTime   time.Time `json:"edit_time" xorm:"comment('编辑时间') DATETIME"`
-	EditUser   int64     `json:"edit_user" xorm:"comment('编辑者') BIGINT(20)"`
-	DelFlag    int       `json:"del_flag" xorm:"comment('是否删除（1：存在；0：删除）') INT(1)"`
+	ImageId    int64           `json:"image_id" xorm:"not null pk autoincr BIGINT(20)"`
+	ImageName  string          `json:"image_name" xorm:"comment('图片名称') VARCHAR(200)"`
+	ImagePath  string          `json:"image_path" xorm:"comment('图片位置') VARCHAR(500)"`
+	ImageSize  int64           `json:"image_size" xorm:"comment('图片大小') BIGINT(20)"`
+	BusinessId int64           `json:"business_id" xorm:"comment('企业ID') BIGINT(20)"`
+	CreateId   int64           `json:"create_id" xorm:"comment('创建者ID') BIGINT(20)"`
+	CreateTime schema.JsonTime `json:"create_time" xorm:"comment('创建时间') DATETIME"`
+	UpdateId   int64           `json:"update_id" xorm:"comment('更新者ID') BIGINT(20)"`
+	UpdateTime schema.JsonTime `json:"update_time" xorm:"comment('更新时间') DATETIME"`
+	DelFlag    int             `json:"del_flag" xorm:"comment('删除标识（-1：不存在；1：存在）') TINYINT(4)"`
 }
 
 func (m *ImageModel) GetPage(params schema.ImageQueryParam) ([]*Image, int64, error) {
@@ -56,6 +56,10 @@ func (m *ImageModel) GetList(businessId int64) ([]*Image, error) {
 	// 获取查询列表
 	if err := m.Engine.Where(query).OrderBy(DefaultOrder).Find(&list); err != nil {
 		return list, err
+	}
+	// 处理列表
+	for i := 0; i < len(list); i++ {
+		list[i].ImagePath = config.Instance.Storage.Url + list[i].ImagePath
 	}
 	return list, nil
 }

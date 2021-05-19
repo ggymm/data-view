@@ -1,9 +1,11 @@
 package charts
 
 import (
+	"errors"
+
 	"data-view/logger"
 	"data-view/schema"
-	"errors"
+
 	"github.com/jmoiron/sqlx"
 )
 

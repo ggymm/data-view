@@ -1,11 +1,13 @@
 package handler
 
 import (
+	"net/http"
+
 	"data-view/model"
 	"data-view/schema"
+
 	"github.com/gin-gonic/gin"
 	"github.com/google/wire"
-	"net/http"
 )
 
 var ImageHandlerSet = wire.NewSet(wire.Struct(new(ImageHandler), "*"))
