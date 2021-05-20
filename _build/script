@@ -1,5 +1,0 @@
-https://www.jb51.net/article/202065.htm
-
-go get github.com/mitchellh/gox
-
-gox -output "{{.Dir}}_{{.OS}}_{{.Arch}}/data_view.exe"
