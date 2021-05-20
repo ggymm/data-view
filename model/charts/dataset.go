@@ -103,6 +103,7 @@ var DatasetGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB,
 			}
 			values = append(values, value)
 		}
+		legends = append([]string{Legend})
 	}
 
 	// 构造dataset

@@ -1,6 +1,8 @@
 package main
 
 import (
+	"net/http"
+
 	"data-view/config"
 	"data-view/handler"
 	"data-view/middleware"
@@ -26,6 +28,9 @@ func (r *Router) NewRouter() (router *gin.Engine) {
 	}
 	router.Use(middleware.ErrHandler())
 
+	router.GET("/", func(c *gin.Context) {
+		c.String(http.StatusOK, "start success")
+	})
 	v1 := router.Group("/api/v1/")
 	{
 		// 数据源管理
@@ -47,6 +52,8 @@ func (r *Router) NewRouter() (router *gin.Engine) {
 		{
 			dataView.GET("/", r.DataView.GetPage)
 			dataView.GET("/:id", r.DataView.Get)
+			dataView.POST("/", r.DataView.Create)
+			dataView.PUT("/", r.DataView.Update)
 			dataView.GET("/chartData", r.DataView.GetChartData)
 		}
 	}
