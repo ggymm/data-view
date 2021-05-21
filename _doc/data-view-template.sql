@@ -11,7 +11,7 @@
  Target Server Version : 50732
  File Encoding         : 65001
 
- Date: 21/05/2021 20:38:26
+ Date: 21/05/2021 20:41:14
 */
 
 SET NAMES utf8mb4;
@@ -670,7 +670,7 @@ INSERT INTO `pie_percent` VALUES (20);
 -- ----------------------------
 DROP TABLE IF EXISTS `pie_rings`;
 CREATE TABLE `pie_rings`  (
-  `﻿name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
