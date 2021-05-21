@@ -17,31 +17,40 @@ var ChartDataHandlers = make(map[string]charts.ChartData)
 func init() {
 	//ChartDataHandlers["plotBubble"] = charts.PlotBubbleGetDataHandle
 	//ChartDataHandlers["plotMap"] = charts.PlotMapGetDataHandle
+
 	ChartDataHandlers["lineNormal"] = charts.LineNormalGetDataHandle
 	//ChartDataHandlers["lineStacking"] = charts.LineStackingGetDataHandle
 	//ChartDataHandlers["lineStackingArea"] = charts.LineStackingAreaGetDataHandle
+
+	ChartDataHandlers["histogramNormal"] = charts.HistogramNormalGetDataHandle
 	//ChartDataHandlers["histogramGradient"] = charts.HistogramGradientGetDataHandle
 	//ChartDataHandlers["histogramGradientHorizontal"] = charts.HistogramGradientGetDataHandle
 	//ChartDataHandlers["histogramStacking"] = charts.HistogramStackingGetDataHandle
 	//ChartDataHandlers["histogramComplex"] = charts.HistogramComplexGetDataHandle
 	//ChartDataHandlers["histogramTwoBar"] = charts.HistogramTwoBarGetDataHandle
+
 	//ChartDataHandlers["mapChina"] = charts.MapChinaGetDataHandle
 	//ChartDataHandlers["mapProvince"] = charts.MapProvinceGetDataHandle
+
 	//ChartDataHandlers["pieNormal"] = charts.PieNormalGetDataHandle
 	//ChartDataHandlers["pieRing"] = charts.PieNormalGetDataHandle
 	//ChartDataHandlers["pieRings"] = charts.PieRingsGetDataHandle
 	//ChartDataHandlers["pie2D"] = charts.PieNormalGetDataHandle
 	//ChartDataHandlers["piePercent"] = charts.PiePercentGetDataHandle
+
 	//ChartDataHandlers["radarBasic"] = charts.RadarBasicGetDataHandle
+
 	//ChartDataHandlers["heatBasic"] = charts.HeatBasicGetDataHandle
+
 	//ChartDataHandlers["relationOne"] = charts.RelationOneGetDataHandle
 	//ChartDataHandlers["relationTwo"] = charts.RelationTwoGetDataHandle
 	//ChartDataHandlers["relationThree"] = charts.RelationThreeGetDataHandle
 	//ChartDataHandlers["relationFour"] = charts.RelationFourGetDataHandle
 	//ChartDataHandlers["relationFive"] = charts.RelationFiveGetDataHandle
+
 	//ChartDataHandlers["wordCloud"] = charts.PieNormalGetDataHandle
 	//ChartDataHandlers["rotationList"] = charts.RotationListGetDataHandle
-	//ChartDataHandlers["counter"] = charts.CounterGetDataHandle
+	ChartDataHandlers["counter"] = charts.CounterGetDataHandle
 	//ChartDataHandlers["gauge"] = charts.GaugeGetDataHandle
 }
 

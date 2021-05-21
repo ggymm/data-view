@@ -18,12 +18,6 @@ type ChartDataParams struct {
 	Legend string `form:"legend"`
 	Name   string `form:"name"`
 	Value  string `form:"value"`
-
-	// 图表扩展字段（其他字段-待移除）
-	Max      string `form:"max"`
-	Stack    string `form:"stack"`
-	Data     string `form:"data"`
-	Province string `form:"province"`
 }
 
 type ViewChartItem struct {
