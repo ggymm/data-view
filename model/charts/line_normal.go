@@ -6,6 +6,8 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
+const LineNormal = "lineNormal"
+
 // LineNormalGetDataHandle 折线图集合（参照Echarts）
 // 基础折线图, 基础平滑折线图, 折线图堆叠
 // 基础面积图, 堆叠面积图

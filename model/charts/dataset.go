@@ -107,7 +107,9 @@ var DatasetGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB,
 	}
 
 	// 构造dataset
-	dataset = append(dataset, legends)
+	if params.ChartType != PieNormal {
+		dataset = append(dataset, legends)
+	}
 	dataset = append(dataset, values...)
 	return map[string]interface{}{
 		"source": dataset,

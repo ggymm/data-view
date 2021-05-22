@@ -18,11 +18,11 @@ func init() {
 	//ChartDataHandlers["plotBubble"] = charts.PlotBubbleGetDataHandle
 	//ChartDataHandlers["plotMap"] = charts.PlotMapGetDataHandle
 
-	ChartDataHandlers["lineNormal"] = charts.LineNormalGetDataHandle
+	ChartDataHandlers[charts.LineNormal] = charts.LineNormalGetDataHandle
 	//ChartDataHandlers["lineStacking"] = charts.LineStackingGetDataHandle
 	//ChartDataHandlers["lineStackingArea"] = charts.LineStackingAreaGetDataHandle
 
-	ChartDataHandlers["histogramNormal"] = charts.HistogramNormalGetDataHandle
+	ChartDataHandlers[charts.HistogramNormal] = charts.HistogramNormalGetDataHandle
 	//ChartDataHandlers["histogramGradient"] = charts.HistogramGradientGetDataHandle
 	//ChartDataHandlers["histogramGradientHorizontal"] = charts.HistogramGradientGetDataHandle
 	//ChartDataHandlers["histogramStacking"] = charts.HistogramStackingGetDataHandle
@@ -32,7 +32,7 @@ func init() {
 	//ChartDataHandlers["mapChina"] = charts.MapChinaGetDataHandle
 	//ChartDataHandlers["mapProvince"] = charts.MapProvinceGetDataHandle
 
-	//ChartDataHandlers["pieNormal"] = charts.PieNormalGetDataHandle
+	ChartDataHandlers[charts.PieNormal] = charts.PieNormalGetDataHandle
 	//ChartDataHandlers["pieRing"] = charts.PieNormalGetDataHandle
 	//ChartDataHandlers["pieRings"] = charts.PieRingsGetDataHandle
 	//ChartDataHandlers["pie2D"] = charts.PieNormalGetDataHandle
