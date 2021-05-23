@@ -15,9 +15,9 @@ type ChartDataParams struct {
 	OrderBy        string `form:"orderBy"`
 
 	// 图表扩展字段（基础字段）
-	Legend string `form:"legend"`
-	Name   string `form:"name"`
-	Value  string `form:"value"`
+	Dimension string `form:"dimension"`
+	Name      string `form:"name"`
+	Value     string `form:"value"`
 }
 
 type ViewChartItem struct {

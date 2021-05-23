@@ -4,4 +4,3 @@ type DataSourceQueryParam struct {
 	PagingParam
 	BusinessId int64
 }
-

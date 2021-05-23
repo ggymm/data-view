@@ -6,7 +6,7 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-const HistogramNormal = "histogramNormal"
+const HistogramNormal = "HistogramNormal"
 
 // HistogramNormalGetDataHandle 柱状图集合（参照Echarts）
 // 基础柱状图

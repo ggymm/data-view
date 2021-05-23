@@ -19,8 +19,8 @@ func init() {
 	//ChartDataHandlers["plotMap"] = charts.PlotMapGetDataHandle
 
 	ChartDataHandlers[charts.LineNormal] = charts.LineNormalGetDataHandle
+	ChartDataHandlers[charts.LineArea] = charts.LineAreaGetDataHandle
 	//ChartDataHandlers["lineStacking"] = charts.LineStackingGetDataHandle
-	//ChartDataHandlers["lineStackingArea"] = charts.LineStackingAreaGetDataHandle
 
 	ChartDataHandlers[charts.HistogramNormal] = charts.HistogramNormalGetDataHandle
 	//ChartDataHandlers["histogramGradient"] = charts.HistogramGradientGetDataHandle
@@ -50,7 +50,7 @@ func init() {
 
 	//ChartDataHandlers["wordCloud"] = charts.PieNormalGetDataHandle
 	//ChartDataHandlers["rotationList"] = charts.RotationListGetDataHandle
-	ChartDataHandlers["counter"] = charts.CounterGetDataHandle
+	ChartDataHandlers[charts.Counter] = charts.CounterGetDataHandle
 	//ChartDataHandlers["gauge"] = charts.GaugeGetDataHandle
 }
 

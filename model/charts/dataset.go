@@ -9,17 +9,24 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
+const (
+	Source    = "source"
+	Name      = "name"
+	Value     = "value"
+	Dimension = "dimension"
+)
+
 var DatasetGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB, params *schema.ChartDataParams) (map[string]interface{}, error) {
 	if len(params.Name) == 0 || len(params.Value) == 0 {
 		return nil, errors.New("参数不完整")
 	}
 
 	var (
-		hasLegend = len(params.Legend) != 0 && params.Legend != "无"
-		items     = make([]map[string]string, 0)
-		dataset   = make([][]string, 0)
-		legends   = make([]string, 0)
-		values    = make([][]string, 0)
+		hasDimension = len(params.Dimension) != 0 && params.Dimension != "无"
+		items        = make([]map[string]string, 0)
+		dataset      = make([][]string, 0)
+		dimensions   = make([]string, 0)
+		source       = make([][]string, 0)
 	)
 
 	rows, err := db.Queryx(params.Sql)
@@ -52,10 +59,10 @@ var DatasetGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB,
 			if key == params.Value {
 				item[Value] = StrVal(value)
 			}
-			if hasLegend {
-				if key == params.Legend {
-					item[Legend] = StrVal(value)
-					legends = append(legends, StrVal(value))
+			if hasDimension {
+				if key == params.Dimension {
+					item[Dimension] = StrVal(value)
+					dimensions = append(dimensions, StrVal(value))
 				}
 			}
 		}
@@ -63,57 +70,55 @@ var DatasetGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB,
 	}
 
 	// 构造dataset的内容
-	if hasLegend {
-		legends = Duplicate(legends)
-		for _, legend := range legends {
-		LegendItems:
+	if hasDimension {
+		dimensions = Duplicate(dimensions)
+		for _, dimension := range dimensions {
+		DimensionItems:
 			for _, item := range items {
-				if item[Legend] == legend {
+				if item[Dimension] == dimension {
 					value := make([]string, 0)
-					if len(values) == 0 {
+					if len(source) == 0 {
 						value = append(value, item[Name], item[Value])
 					} else {
-						for i := 0; i < len(values); i++ {
-							if item[Name] == values[i][0] {
-								values[i] = append(values[i], item[Value])
-								continue LegendItems
+						for i := 0; i < len(source); i++ {
+							if item[Name] == source[i][0] {
+								source[i] = append(source[i], item[Value])
+								continue DimensionItems
 							}
 						}
 						value = append(value, item[Name], item[Value])
 					}
-					values = append(values, value)
+					source = append(source, value)
 				}
 			}
 		}
-		legends = append([]string{Legend}, legends...)
+		dimensions = append([]string{Dimension}, dimensions...)
 	} else {
 	Items:
 		for _, item := range items {
 			value := make([]string, 0)
-			if len(values) == 0 {
+			if len(source) == 0 {
 				value = append(value, item[Name], item[Value])
 			} else {
-				for i := 0; i < len(values); i++ {
-					if item[Name] == values[i][0] {
-						values[i] = append(values[i], item[Value])
+				for i := 0; i < len(source); i++ {
+					if item[Name] == source[i][0] {
+						source[i] = append(source[i], item[Value])
 						continue Items
 					}
 				}
 				value = append(value, item[Name], item[Value])
 			}
-			values = append(values, value)
+			source = append(source, value)
 		}
-		legends = append([]string{Legend})
+		dimensions = append([]string{Dimension})
 	}
 
 	// 构造dataset
 	if params.ChartType != PieNormal {
-		dataset = append(dataset, legends)
+		dataset = append(dataset, dimensions)
 	}
-	dataset = append(dataset, values...)
-	return map[string]interface{}{
-		"source": dataset,
-	}, nil
+	dataset = append(dataset, source...)
+	return map[string]interface{}{Source: dataset}, nil
 }, RunGetDataFromCsv: func(chartDataParams *schema.ChartDataParams) (map[string]interface{}, error) {
 	return nil, nil
 }}

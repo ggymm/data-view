@@ -11,12 +11,6 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-const (
-	Name   = "name"
-	Value  = "value"
-	Legend = "legend"
-)
-
 type ChartDataHandler struct {
 	RunGetDataFromDB  func(db *sqlx.DB, chartDataParams *schema.ChartDataParams) (map[string]interface{}, error)
 	RunGetDataFromCsv func(chartDataParams *schema.ChartDataParams) (map[string]interface{}, error)
