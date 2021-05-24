@@ -15,7 +15,7 @@ import (
 var ChartDataHandlers = make(map[string]charts.ChartData)
 
 func init() {
-	//ChartDataHandlers["plotBubble"] = charts.PlotBubbleGetDataHandle
+	ChartDataHandlers[charts.ScatterNormal] = charts.ScatterNormalGetDataHandle
 	//ChartDataHandlers["plotMap"] = charts.PlotMapGetDataHandle
 
 	ChartDataHandlers[charts.LineNormal] = charts.LineNormalGetDataHandle
