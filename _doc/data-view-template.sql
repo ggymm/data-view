@@ -11,7 +11,7 @@
  Target Server Version : 50732
  File Encoding         : 65001
 
- Date: 21/05/2021 20:41:14
+ Date: 24/05/2021 20:46:17
 */
 
 SET NAMES utf8mb4;
@@ -651,6 +651,24 @@ INSERT INTO `pie` VALUES ('邮件营销', '310', '310');
 INSERT INTO `pie` VALUES ('联盟广告', '234', '234');
 INSERT INTO `pie` VALUES ('视频广告', '135', '135');
 INSERT INTO `pie` VALUES ('搜索引擎', '1548', '1548');
+
+-- ----------------------------
+-- Table structure for pie_normal
+-- ----------------------------
+DROP TABLE IF EXISTS `pie_normal`;
+CREATE TABLE `pie_normal`  (
+  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `value` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of pie_normal
+-- ----------------------------
+INSERT INTO `pie_normal` VALUES ('直接访问', '335');
+INSERT INTO `pie_normal` VALUES ('邮件营销', '310');
+INSERT INTO `pie_normal` VALUES ('联盟广告', '274');
+INSERT INTO `pie_normal` VALUES ('视频广告', '235');
+INSERT INTO `pie_normal` VALUES ('搜索引擎', '400');
 
 -- ----------------------------
 -- Table structure for pie_percent
@@ -1962,6 +1980,41 @@ INSERT INTO `scatter_map` VALUES (997, '弱', 118.92, 31.88, 1);
 INSERT INTO `scatter_map` VALUES (998, '弱', 118.92, 31.77, 1);
 INSERT INTO `scatter_map` VALUES (999, '弱', 118.92, 29.57, 1);
 INSERT INTO `scatter_map` VALUES (1000, '弱', 118.92, 28.96, 1);
+
+-- ----------------------------
+-- Table structure for scatter_normal
+-- ----------------------------
+DROP TABLE IF EXISTS `scatter_normal`;
+CREATE TABLE `scatter_normal`  (
+  `x` decimal(10, 0) NULL DEFAULT NULL,
+  `y` decimal(10, 0) NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of scatter_normal
+-- ----------------------------
+INSERT INTO `scatter_normal` VALUES (10, 8);
+INSERT INTO `scatter_normal` VALUES (8, 7);
+INSERT INTO `scatter_normal` VALUES (13, 8);
+INSERT INTO `scatter_normal` VALUES (9, 9);
+INSERT INTO `scatter_normal` VALUES (11, 8);
+INSERT INTO `scatter_normal` VALUES (14, 8);
+INSERT INTO `scatter_normal` VALUES (13, 7);
+INSERT INTO `scatter_normal` VALUES (10, 6);
+INSERT INTO `scatter_normal` VALUES (14, 9);
+INSERT INTO `scatter_normal` VALUES (13, 7);
+INSERT INTO `scatter_normal` VALUES (9, 7);
+INSERT INTO `scatter_normal` VALUES (12, 7);
+INSERT INTO `scatter_normal` VALUES (3, 4);
+INSERT INTO `scatter_normal` VALUES (12, 8);
+INSERT INTO `scatter_normal` VALUES (2, 4);
+INSERT INTO `scatter_normal` VALUES (1, 3);
+INSERT INTO `scatter_normal` VALUES (4, 5);
+INSERT INTO `scatter_normal` VALUES (6, 7);
+INSERT INTO `scatter_normal` VALUES (12, 6);
+INSERT INTO `scatter_normal` VALUES (12, 9);
+INSERT INTO `scatter_normal` VALUES (7, 6);
+INSERT INTO `scatter_normal` VALUES (5, 6);
 
 -- ----------------------------
 -- Table structure for template_1_crc_line
