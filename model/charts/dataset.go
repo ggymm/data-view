@@ -114,9 +114,11 @@ var DatasetGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB,
 	}
 
 	// 构造dataset
-	if params.ChartType != PieNormal {
-		dataset = append(dataset, dimensions)
+	if params.ChartType == PieNormal {
+		// 饼图特殊处理
+		dimensions = append(dimensions, "")
 	}
+	dataset = append(dataset, dimensions)
 	dataset = append(dataset, source...)
 	return map[string]interface{}{Source: dataset}, nil
 }, RunGetDataFromCsv: func(chartDataParams *schema.ChartDataParams) (map[string]interface{}, error) {
