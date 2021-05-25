@@ -4,6 +4,7 @@ import (
 	"errors"
 	"strconv"
 	"strings"
+	"time"
 
 	"data-view/config"
 	"data-view/schema"
@@ -124,8 +125,43 @@ func (m *DataViewModel) Get(id, businessId int64) (*ViewInstancePro, error) {
 	}
 }
 
-func (m *DataViewModel) Create(vip *ViewInstancePro) error {
-	return nil
+func (m *DataViewModel) Create(vip *ViewInstancePro) (int64, error) {
+	session := m.Engine.NewSession()
+	defer func() {
+		if session != nil {
+			_ = session.Close()
+		}
+	}()
+	if err := session.Begin(); err != nil {
+		return 0, err
+	}
+
+	vip.InstanceVersion = 1
+	vip.CreateTime = schema.JsonTime(time.Now())
+	vip.UpdateTime = schema.JsonTime(time.Now())
+	vip.DelFlag = IsExist
+
+	// 保存数据可视化实例
+	if _, err := session.Insert(vip); err != nil {
+		_ = session.Rollback()
+		return 0, err
+	} else {
+		for i := 0; i < len(vip.ChartItems); i++ {
+			chartItem := vip.ChartItems[i]
+			chartItem.InstanceId = vip.InstanceId
+			chartItem.ItemVersion = vip.InstanceVersion
+			if _, err := session.Insert(chartItem); err != nil {
+				_ = session.Rollback()
+				return 0, err
+			}
+		}
+	}
+
+	// 事务提交
+	if err := session.Commit(); err != nil {
+		return 0, err
+	}
+	return vip.InstanceId, nil
 }
 
 func (m *DataViewModel) Update(vip *ViewInstancePro) error {

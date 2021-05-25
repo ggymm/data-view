@@ -1,11 +1,10 @@
 package handler
 
 import (
-	"net/http"
-	"strconv"
-
 	"data-view/model"
 	"data-view/schema"
+	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/wire"
@@ -62,11 +61,11 @@ func (h *DataViewHandler) Create(c *gin.Context) {
 	vip.CreateId = c.GetInt64("UserId")
 	vip.UpdateId = c.GetInt64("UserId")
 
-	if err := h.DataViewModel.Create(vip); err != nil {
+	if id, err := h.DataViewModel.Create(vip); err != nil {
 		returnJson(c, false, err.Error())
 		return
 	} else {
-		returnJson(c, true, "success")
+		returnJson(c, true, id)
 		return
 	}
 }
@@ -82,7 +81,7 @@ func (h *DataViewHandler) Update(c *gin.Context) {
 	vip.BusinessId = c.GetInt64("BusinessId")
 	vip.UpdateId = c.GetInt64("UserId")
 
-	if err := h.DataViewModel.Create(vip); err != nil {
+	if err := h.DataViewModel.Update(vip); err != nil {
 		returnJson(c, false, err.Error())
 		return
 	} else {
