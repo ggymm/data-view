@@ -66,10 +66,14 @@ func (ViewInstancePro) TableName() string {
 
 func (vip *ViewInstancePro) setStartIndex() {
 	chartItems := vip.ChartItems
-	itemI := chartItems[len(chartItems)-1].ItemI
-	index := strings.Replace(itemI, "chart", "", -1)
-	i, _ := strconv.ParseInt(index, 10, 64)
-	vip.StartIndex = i + 1
+	if len(chartItems) > 0 {
+		itemI := chartItems[len(chartItems)-1].ItemI
+		index := strings.Replace(itemI, "chart", "", -1)
+		i, _ := strconv.ParseInt(index, 10, 64)
+		vip.StartIndex = i + 1
+	} else {
+		vip.StartIndex = 0
+	}
 }
 
 func (m *DataViewModel) GetPage(params schema.DataViewQueryParam) ([]*ViewInstance, int64, error) {
@@ -165,5 +169,39 @@ func (m *DataViewModel) Create(vip *ViewInstancePro) (int64, error) {
 }
 
 func (m *DataViewModel) Update(vip *ViewInstancePro) error {
+	session := m.Engine.NewSession()
+	defer func() {
+		if session != nil {
+			_ = session.Close()
+		}
+	}()
+	if err := session.Begin(); err != nil {
+		return err
+	}
+
+	vip.InstanceVersion = vip.InstanceVersion + 1
+	vip.UpdateTime = schema.JsonTime(time.Now())
+	vip.DelFlag = IsExist
+
+	// 保存数据可视化实例
+	if _, err := session.ID(vip.InstanceId).Update(vip); err != nil {
+		_ = session.Rollback()
+		return err
+	} else {
+		for i := 0; i < len(vip.ChartItems); i++ {
+			chartItem := vip.ChartItems[i]
+			chartItem.InstanceId = vip.InstanceId
+			chartItem.ItemVersion = vip.InstanceVersion
+			if _, err := session.Insert(chartItem); err != nil {
+				_ = session.Rollback()
+				return err
+			}
+		}
+	}
+
+	// 事务提交
+	if err := session.Commit(); err != nil {
+		return err
+	}
 	return nil
 }

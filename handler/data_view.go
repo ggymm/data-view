@@ -57,6 +57,11 @@ func (h *DataViewHandler) Create(c *gin.Context) {
 	}
 
 	vip := new(model.ViewInstancePro)
+	err := schema.Copy(&vip, &createReq)
+	if err != nil {
+		returnJson(c, false, err.Error())
+		return
+	}
 	vip.BusinessId = c.GetInt64("BusinessId")
 	vip.CreateId = c.GetInt64("UserId")
 	vip.UpdateId = c.GetInt64("UserId")
@@ -78,6 +83,11 @@ func (h *DataViewHandler) Update(c *gin.Context) {
 	}
 
 	vip := new(model.ViewInstancePro)
+	err := schema.Copy(&vip, &updateReq)
+	if err != nil {
+		returnJson(c, false, err.Error())
+		return
+	}
 	vip.BusinessId = c.GetInt64("BusinessId")
 	vip.UpdateId = c.GetInt64("UserId")
 

@@ -21,40 +21,40 @@ type ChartDataParams struct {
 }
 
 type ViewChartItem struct {
-	ItemChartData string `form:"chartData"`
-	ItemChartType string `form:"chartType"`
-	ItemChoose    string `form:"choose"`
-	ItemData      string `form:"data"`
-	ItemHeight    int64  `form:"height"`
-	ItemI         string `form:"i"`
-	ItemInterval  int64  `form:"interval"`
-	ItemOption    string `form:"option"`
-	ItemRefresh   string `form:"refresh"`
-	ItemWidth     int64  `form:"width"`
-	ItemX         int64  `form:"x"`
-	ItemY         int64  `form:"y"`
-	ItemVersion   int64  `form:"version"`
+	ItemChartData string `json:"chartData"`
+	ItemChartType string `json:"chartType"`
+	ItemChoose    string `json:"choose"`
+	ItemData      string `json:"data"`
+	ItemHeight    int64  `json:"height"`
+	ItemI         string `json:"i"`
+	ItemInterval  int64  `json:"interval"`
+	ItemOption    string `json:"option"`
+	ItemRefresh   string `json:"refresh"`
+	ItemWidth     int64  `json:"width"`
+	ItemX         int64  `json:"x"`
+	ItemY         int64  `json:"y"`
+	ItemVersion   int64  `json:"version"`
 }
 
 type CreateDataViewReq struct {
-	InstanceBackgroundColor string          `form:"instance_background_color"`
-	InstanceBackgroundImg   int64           `form:"instance_background_img"`
-	InstanceWidth           int64           `form:"instance_width" validate:"required"`
-	InstanceHeight          int64           `form:"instance_height" validate:"required"`
-	InstanceTitle           string          `form:"instance_title"`
-	InstanceViewThumbnail   string          `form:"instance_view_thumbnail" validate:"required"`
-	InstanceVersion         int64           `form:"instance_version" validate:"required"`
-	ChartItems              []ViewChartItem `form:"chart_items" validate:"required"`
+	InstanceBackgroundColor string           `json:"instance_background_color"`
+	InstanceBackgroundImg   int64            `json:"instance_background_img"`
+	InstanceWidth           int64            `json:"instance_width" validate:"required"`
+	InstanceHeight          int64            `json:"instance_height" validate:"required"`
+	InstanceTitle           string           `json:"instance_title"`
+	InstanceViewThumbnail   string           `json:"instance_view_thumbnail" validate:"required"`
+	InstanceVersion         int64            `json:"instance_version" validate:"required"`
+	ChartItems              []*ViewChartItem `json:"chart_items" validate:"required"`
 }
 
 type UpdateDataViewReq struct {
-	InstanceId              int64           `form:"instance_id" validate:"required"`
-	InstanceBackgroundColor string          `form:"instance_background_color"`
-	InstanceBackgroundImg   int64           `form:"instance_background_img"`
-	InstanceWidth           int64           `form:"instance_width" validate:"required"`
-	InstanceHeight          int64           `form:"instance_height" validate:"required"`
-	InstanceTitle           string          `form:"instance_title"`
-	InstanceViewThumbnail   string          `form:"instance_view_thumbnail" validate:"required"`
-	InstanceVersion         int64           `form:"instance_version" validate:"required"`
-	ChartItems              []ViewChartItem `form:"chart_items" validate:"required"`
+	InstanceId              int64            `json:"instance_id" validate:"required"`
+	InstanceBackgroundColor string           `json:"instance_background_color"`
+	InstanceBackgroundImg   int64            `json:"instance_background_img"`
+	InstanceWidth           int64            `json:"instance_width" validate:"required"`
+	InstanceHeight          int64            `json:"instance_height" validate:"required"`
+	InstanceTitle           string           `json:"instance_title"`
+	InstanceViewThumbnail   string           `json:"instance_view_thumbnail" validate:"required"`
+	InstanceVersion         int64            `json:"instance_version" validate:"required"`
+	ChartItems              []*ViewChartItem `json:"chart_items" validate:"required"`
 }
