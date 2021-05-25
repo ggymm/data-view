@@ -49,7 +49,7 @@ func init() {
 	//ChartDataHandlers["relationFive"] = charts.RelationFiveGetDataHandle
 
 	//ChartDataHandlers["wordCloud"] = charts.PieNormalGetDataHandle
-	//ChartDataHandlers["rotationList"] = charts.RotationListGetDataHandle
+	ChartDataHandlers[charts.CarouselList] = charts.CarouselListGetDataHandle
 	ChartDataHandlers[charts.Counter] = charts.CounterGetDataHandle
 	//ChartDataHandlers["gauge"] = charts.GaugeGetDataHandle
 }
