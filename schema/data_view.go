@@ -38,7 +38,7 @@ type ViewChartItem struct {
 
 type CreateDataViewReq struct {
 	InstanceBackgroundColor string           `json:"instance_background_color"`
-	InstanceBackgroundImg   int64            `json:"instance_background_img"`
+	InstanceBackgroundImg   string           `json:"instance_background_img"`
 	InstanceWidth           int64            `json:"instance_width" validate:"required"`
 	InstanceHeight          int64            `json:"instance_height" validate:"required"`
 	InstanceTitle           string           `json:"instance_title"`
@@ -50,7 +50,7 @@ type CreateDataViewReq struct {
 type UpdateDataViewReq struct {
 	InstanceId              int64            `json:"instance_id" validate:"required"`
 	InstanceBackgroundColor string           `json:"instance_background_color"`
-	InstanceBackgroundImg   int64            `json:"instance_background_img"`
+	InstanceBackgroundImg   string           `json:"instance_background_img"`
 	InstanceWidth           int64            `json:"instance_width" validate:"required"`
 	InstanceHeight          int64            `json:"instance_height" validate:"required"`
 	InstanceTitle           string           `json:"instance_title"`

@@ -6,7 +6,6 @@ import (
 	"strings"
 	"time"
 
-	"data-view/config"
 	"data-view/schema"
 
 	"github.com/google/wire"
@@ -23,11 +22,11 @@ type ViewInstance struct {
 	InstanceId              int64           `json:"instance_id" xorm:"not null pk autoincr comment('实例ID') BIGINT(20)"`
 	BusinessId              int64           `json:"business_id" xorm:"comment('企业ID') BIGINT(20)"`
 	InstanceBackgroundColor string          `json:"instance_background_color" xorm:"comment('背景颜色') VARCHAR(20)"`
-	InstanceBackgroundImg   string          `json:"instance_background_img" xorm:"comment('背景图') VARCHAR(50)"`
+	InstanceBackgroundImg   string          `json:"instance_background_img" xorm:"comment('背景图') VARCHAR(500)"`
 	InstanceWidth           int64           `json:"instance_width" xorm:"comment('宽') BIGINT(20)"`
 	InstanceHeight          int64           `json:"instance_height" xorm:"comment('高') BIGINT(20)"`
 	InstanceTitle           string          `json:"instance_title" xorm:"comment('标题') VARCHAR(50)"`
-	InstanceViewThumbnail   string          `json:"instance_view_thumbnail" xorm:"comment('缩略图') VARCHAR(50)"`
+	InstanceViewThumbnail   string          `json:"instance_view_thumbnail" xorm:"comment('缩略图') VARCHAR(500)"`
 	InstanceVersion         int64           `json:"instance_version" xorm:"comment('版本号') BIGINT(20)"`
 	CreateId                int64           `json:"create_id" xorm:"comment('创建者ID') BIGINT(20)"`
 	CreateTime              schema.JsonTime `json:"create_time" xorm:"comment('创建时间') DATETIME"`
@@ -89,11 +88,6 @@ func (m *DataViewModel) GetPage(params schema.DataViewQueryParam) ([]*ViewInstan
 	columns := []string{"instance_id", "instance_width", "instance_height", "instance_title", "instance_view_thumbnail", "update_time"}
 	if err := m.Engine.Cols(columns...).Where(query).Limit(params.Size, params.Offset()).OrderBy(DefaultOrder).Find(&list); err != nil {
 		return list, count, err
-	}
-	// 处理列表
-	for i := 0; i < len(list); i++ {
-		list[i].InstanceBackgroundImg = config.Instance.Storage.Url + list[i].InstanceBackgroundImg
-		list[i].InstanceViewThumbnail = config.Instance.Storage.Url + list[i].InstanceViewThumbnail
 	}
 	if count, err := m.Engine.Where(query).Count(new(ViewInstance)); err != nil {
 		return list, count, err

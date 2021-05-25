@@ -1,7 +1,6 @@
 package model
 
 import (
-	"data-view/config"
 	"data-view/schema"
 
 	"github.com/google/wire"
@@ -56,10 +55,6 @@ func (m *ImageModel) GetList(businessId int64) ([]*Image, error) {
 	// 获取查询列表
 	if err := m.Engine.Where(query).OrderBy(DefaultOrder).Find(&list); err != nil {
 		return list, err
-	}
-	// 处理列表
-	for i := 0; i < len(list); i++ {
-		list[i].ImagePath = config.Instance.Storage.Url + list[i].ImagePath
 	}
 	return list, nil
 }
