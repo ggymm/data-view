@@ -41,3 +41,33 @@ func (h *ImageHandler) GetList(c *gin.Context) {
 		return
 	}
 }
+
+func (h *ImageHandler) UploadHtml(c *gin.Context) {
+	const uploadHtml string = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>测试上传文件</title>
+</head>
+<body>
+<form action="/oss/api/v1/upload" method="post" enctype="multipart/form-data">
+	<label>项目名称（必填）:
+		<input type="text" name="project"/>
+	</label>
+	<label>模块名称（非必填）:
+		<input type="text" name="module"/>
+	</label>
+	<input type="file" name="file"/>
+	<input type="submit" value="上传"/>
+</form>
+</body>
+</html>`
+	c.Header("Content-Type", "text/html; charset=utf-8")
+	c.String(200, uploadHtml)
+	return
+}
+
+func (h *ImageHandler) Upload(c *gin.Context) {
+
+}

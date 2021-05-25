@@ -45,6 +45,8 @@ func (r *Router) NewRouter() (router *gin.Engine) {
 		{
 			image.GET("/", r.Image.GetPage)
 			image.GET("/list", r.Image.GetList)
+			image.GET("/upload.html", r.Image.UploadHtml)
+			image.POST("/", r.Image.Upload)
 		}
 
 		// 数据可视化大屏管理
