@@ -7,12 +7,10 @@ import (
 )
 
 type GlobalConfig struct {
-	App      appConfig
-	Log      logConfig
-	Database databaseConfig
-	Sqlite   sqliteConfig
-	Mysql    mysqlConfig
-	Storage  storageConfig
+	App     appConfig
+	Log     logConfig
+	Mysql   mysqlConfig
+	Storage storageConfig
 }
 
 type appConfig struct {
@@ -24,14 +22,6 @@ type appConfig struct {
 type logConfig struct {
 	Filename string
 	MaxSize  int64 `toml:"max_size"`
-}
-
-type databaseConfig struct {
-	Type string
-}
-
-type sqliteConfig struct {
-	Path string
 }
 
 type mysqlConfig struct {

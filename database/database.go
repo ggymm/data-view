@@ -20,17 +20,10 @@ func InitXormDB() (*xorm.Engine, func(), error) {
 }
 
 func NewGormDB() (*xorm.Engine, func(), error) {
-	var connectUrl string
-	switch config.Instance.Database.Type {
-	default:
-	case "mysql":
-		connectUrl = config.Instance.Mysql.Username + ":" + config.Instance.Mysql.Password +
-			"@tcp(" + config.Instance.Mysql.Address + ":" + config.Instance.Mysql.Port +
-			")/" + config.Instance.Mysql.Name + "?charset=utf8&parseTime=True&loc=Local"
-	case "sqlite3":
-		connectUrl = config.Instance.Sqlite.Path
-	}
-	if engine, err := xorm.NewEngine(config.Instance.Database.Type, connectUrl); err != nil {
+	connectUrl := config.Instance.Mysql.Username + ":" + config.Instance.Mysql.Password +
+		"@tcp(" + config.Instance.Mysql.Address + ":" + config.Instance.Mysql.Port +
+		")/" + config.Instance.Mysql.Name + "?charset=utf8&parseTime=True&loc=Local"
+	if engine, err := xorm.NewEngine("mysql", connectUrl); err != nil {
 		return nil, nil, err
 	} else {
 		engine.SetTableMapper(core.SnakeMapper{})
