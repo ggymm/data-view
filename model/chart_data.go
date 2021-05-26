@@ -60,11 +60,11 @@ func (m *DataViewModel) GetChartData(params *schema.ChartDataParams, dataSource 
 		db         *sqlx.DB
 		dataResult map[string]interface{}
 	)
-	defer func(db *sqlx.DB) {
+	defer func() {
 		if db != nil {
 			_ = db.Close()
 		}
-	}(db)
+	}()
 	// 此处判断图表类型
 	chartType := params.ChartType
 	// 此处判断图表数据源类型
