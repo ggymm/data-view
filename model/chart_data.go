@@ -29,7 +29,7 @@ func init() {
 	//ChartDataHandlers["histogramComplex"] = charts.HistogramComplexGetDataHandle
 	//ChartDataHandlers["histogramTwoBar"] = charts.HistogramTwoBarGetDataHandle
 
-	//ChartDataHandlers["mapChina"] = charts.MapChinaGetDataHandle
+	ChartDataHandlers[charts.MapChina] = charts.MapChinaGetDataHandle
 	//ChartDataHandlers["mapProvince"] = charts.MapProvinceGetDataHandle
 
 	ChartDataHandlers[charts.PieNormal] = charts.PieNormalGetDataHandle
@@ -88,7 +88,11 @@ func (m *DataViewModel) GetChartData(params *schema.ChartDataParams, dataSource 
 		} else {
 			return nil, errors.New("数据源类型错误")
 		}
-		if dataResult, err = ChartDataHandlers[chartType].GetDataFromDB(db, params); err != nil {
+		chartData := ChartDataHandlers[chartType]
+		if chartData == nil {
+			return nil, errors.New("图表类型错误")
+		}
+		if dataResult, err = chartData.GetDataFromDB(db, params); err != nil {
 			return dataResult, err
 		}
 		return dataResult, nil

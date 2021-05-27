@@ -37,7 +37,7 @@ var MinioStorageHandle = &StorageHandler{RunUpload: func(uploadFile *multipart.F
 }}
 
 // CustomStorageHandle
-// 自己实现
+// 简单的
 var CustomStorageHandle = &StorageHandler{RunUpload: func(uploadFile *multipart.FileHeader) (string, error) {
 	return "", nil
 }}
