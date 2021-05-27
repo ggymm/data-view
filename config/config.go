@@ -33,7 +33,9 @@ type mysqlConfig struct {
 }
 
 type storageConfig struct {
-	Url string
+	Type string
+	Url  string
+	Path string
 }
 
 var Instance *GlobalConfig

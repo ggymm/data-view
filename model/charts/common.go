@@ -11,6 +11,11 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
+type ChartData interface {
+	GetDataFromDB(db *sqlx.DB, chartDataParams *schema.ChartDataParams) (map[string]interface{}, error)
+	GetDataFromCsv(chartDataParams *schema.ChartDataParams) (map[string]interface{}, error)
+}
+
 type ChartDataHandler struct {
 	RunGetDataFromDB  func(db *sqlx.DB, chartDataParams *schema.ChartDataParams) (map[string]interface{}, error)
 	RunGetDataFromCsv func(chartDataParams *schema.ChartDataParams) (map[string]interface{}, error)
@@ -22,11 +27,6 @@ func (handler *ChartDataHandler) GetDataFromDB(db *sqlx.DB, chartDataParams *sch
 
 func (handler *ChartDataHandler) GetDataFromCsv(chartDataParams *schema.ChartDataParams) (map[string]interface{}, error) {
 	return handler.RunGetDataFromCsv(chartDataParams)
-}
-
-type ChartData interface {
-	GetDataFromDB(db *sqlx.DB, chartDataParams *schema.ChartDataParams) (map[string]interface{}, error)
-	GetDataFromCsv(chartDataParams *schema.ChartDataParams) (map[string]interface{}, error)
 }
 
 // StrVal interface 转 string

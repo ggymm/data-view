@@ -28,11 +28,14 @@ func (r *Router) NewRouter() (router *gin.Engine) {
 	}
 	router.Use(middleware.ErrHandler())
 
-	router.GET("/", func(c *gin.Context) {
-		c.String(http.StatusOK, "start success")
-	})
+	router.StaticFS("/storage", http.Dir("storage"))
 	v1 := router.Group("/api/v1/")
 	{
+		// 状态
+		v1.GET("status", func(c *gin.Context) {
+			c.String(http.StatusOK, "start success")
+		})
+
 		// 数据源管理
 		dataSource := v1.Group("dataSource/").Use(middleware.CheckUser())
 		{
