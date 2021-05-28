@@ -11,7 +11,7 @@
  Target Server Version : 50732
  File Encoding         : 65001
 
- Date: 24/05/2021 20:46:17
+ Date: 28/05/2021 09:38:32
 */
 
 SET NAMES utf8mb4;
@@ -68,6 +68,25 @@ INSERT INTO `bpv_line_stacking_area_1_copy` VALUES (7, '201702', '197', 'compute
 INSERT INTO `bpv_line_stacking_area_1_copy` VALUES (8, '201703', '197', 'compute-2');
 INSERT INTO `bpv_line_stacking_area_1_copy` VALUES (9, '201704', '550', 'compute-2');
 INSERT INTO `bpv_line_stacking_area_1_copy` VALUES (10, '201705', '590', 'compute-2');
+
+-- ----------------------------
+-- Table structure for carousel_list
+-- ----------------------------
+DROP TABLE IF EXISTS `carousel_list`;
+CREATE TABLE `carousel_list`  (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of carousel_list
+-- ----------------------------
+INSERT INTO `carousel_list` VALUES (1, 'key1', 'value1');
+INSERT INTO `carousel_list` VALUES (2, 'key2', 'value2');
+INSERT INTO `carousel_list` VALUES (3, 'key3', 'value3');
+INSERT INTO `carousel_list` VALUES (4, 'key4', 'value4');
 
 -- ----------------------------
 -- Table structure for counter
@@ -944,25 +963,6 @@ INSERT INTO `relation_two` VALUES (2, 'a2', 2, 4, 1, 1, 'dalianjiaotong');
 INSERT INTO `relation_two` VALUES (2, 'a2', 2, 5, 1, 1, 'dalianjiaotong');
 INSERT INTO `relation_two` VALUES (4, 'bb', 4, 1, 55, 22, 'dalianjiaotong');
 INSERT INTO `relation_two` VALUES (5, 'cc', NULL, NULL, 1, 35, 'dalianjiaotong');
-
--- ----------------------------
--- Table structure for rotation_list
--- ----------------------------
-DROP TABLE IF EXISTS `rotation_list`;
-CREATE TABLE `rotation_list`  (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of rotation_list
--- ----------------------------
-INSERT INTO `rotation_list` VALUES (1, 'key1', 'value1');
-INSERT INTO `rotation_list` VALUES (2, 'key2', 'value2');
-INSERT INTO `rotation_list` VALUES (3, 'key3', 'value3');
-INSERT INTO `rotation_list` VALUES (4, 'key4', 'value4');
 
 -- ----------------------------
 -- Table structure for scatter_map
@@ -2110,7 +2110,7 @@ CREATE TABLE `template_1_mcj_line`  (
 -- ----------------------------
 -- Records of template_1_mcj_line
 -- ----------------------------
-INSERT INTO `template_1_mcj_line` VALUES ('12/01', '60', '1');
+INSERT INTO `template_1_mcj_line` VALUES ('01/01', '60', '1');
 INSERT INTO `template_1_mcj_line` VALUES ('02/01', '50', '1');
 INSERT INTO `template_1_mcj_line` VALUES ('03/01', '60', '1');
 INSERT INTO `template_1_mcj_line` VALUES ('04/01', '60', '1');
@@ -2121,7 +2121,7 @@ INSERT INTO `template_1_mcj_line` VALUES ('08/01', '70', '1');
 INSERT INTO `template_1_mcj_line` VALUES ('09/01', '20', '1');
 INSERT INTO `template_1_mcj_line` VALUES ('10/01', '55', '1');
 INSERT INTO `template_1_mcj_line` VALUES ('11/01', '220', '1');
-INSERT INTO `template_1_mcj_line` VALUES ('01/01', '100', '2');
+INSERT INTO `template_1_mcj_line` VALUES ('12/01', '100', '1');
 INSERT INTO `template_1_mcj_line` VALUES ('01/01', '70', '2');
 INSERT INTO `template_1_mcj_line` VALUES ('02/01', '80', '2');
 INSERT INTO `template_1_mcj_line` VALUES ('03/01', '80', '2');
