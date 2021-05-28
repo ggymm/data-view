@@ -11,7 +11,7 @@
  Target Server Version : 50732
  File Encoding         : 65001
 
- Date: 28/05/2021 16:33:22
+ Date: 28/05/2021 20:26:46
 */
 
 SET NAMES utf8mb4;
@@ -844,6 +844,19 @@ INSERT INTO `plot_bubble` VALUES (23038, 39, 73.13, '2015', NULL, 143456918);
 INSERT INTO `plot_bubble` VALUES (19360, 40, 76.5, '2015', NULL, 78665830);
 INSERT INTO `plot_bubble` VALUES (38225, 41, 81.4, '2015', NULL, 64715810);
 INSERT INTO `plot_bubble` VALUES (53354, 42, 79.1, '2015', NULL, 321773631);
+
+-- ----------------------------
+-- Table structure for progress
+-- ----------------------------
+DROP TABLE IF EXISTS `progress`;
+CREATE TABLE `progress`  (
+  `value` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of progress
+-- ----------------------------
+INSERT INTO `progress` VALUES ('80');
 
 -- ----------------------------
 -- Table structure for radar
