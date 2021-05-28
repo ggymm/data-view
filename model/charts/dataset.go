@@ -114,7 +114,8 @@ var DatasetGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB,
 	}
 
 	// 构造dataset
-	if params.ChartType == PieNormal {
+	if params.ChartType == PieNormal ||
+		params.ChartType == MapChina {
 		// 饼图特殊处理
 		dimensions = append(dimensions, "")
 	}
