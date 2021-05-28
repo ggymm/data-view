@@ -51,6 +51,7 @@ func init() {
 	//ChartDataHandlers["wordCloud"] = charts.PieNormalGetDataHandle
 	ChartDataHandlers[charts.CarouselList] = charts.CarouselListGetDataHandle
 	ChartDataHandlers[charts.Counter] = charts.CounterGetDataHandle
+	ChartDataHandlers[charts.Progress] = charts.ProgressGetDataHandle
 	//ChartDataHandlers["gauge"] = charts.GaugeGetDataHandle
 }
 

@@ -11,6 +11,8 @@ import (
 
 const Counter = "Counter"
 
+// CounterGetDataHandle 单值集合
+// 计数器，进度条
 var CounterGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB, params *schema.ChartDataParams) (map[string]interface{}, error) {
 	if len(params.Value) == 0 {
 		return nil, errors.New("参数不完整")
