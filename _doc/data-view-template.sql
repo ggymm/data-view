@@ -11,7 +11,7 @@
  Target Server Version : 50732
  File Encoding         : 65001
 
- Date: 28/05/2021 09:38:32
+ Date: 28/05/2021 16:33:22
 */
 
 SET NAMES utf8mb4;
@@ -445,6 +445,55 @@ INSERT INTO `map_china` VALUES (9, 'iphoen1', '黑龙江', '947');
 INSERT INTO `map_china` VALUES (10, 'iphoen1', '湖南', '857');
 INSERT INTO `map_china` VALUES (11, 'iphone5', '安徽', '851');
 INSERT INTO `map_china` VALUES (12, 'iphone3', '山东', '858');
+
+-- ----------------------------
+-- Table structure for map_china_new
+-- ----------------------------
+DROP TABLE IF EXISTS `map_china_new`;
+CREATE TABLE `map_china_new`  (
+  `id` int(11) NULL DEFAULT NULL,
+  `name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `value` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `legend` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of map_china_new
+-- ----------------------------
+INSERT INTO `map_china_new` VALUES (1, '北京', '7040', '人数');
+INSERT INTO `map_china_new` VALUES (2, '天津', '9876', '人数');
+INSERT INTO `map_china_new` VALUES (3, '上海', '8278', '人数');
+INSERT INTO `map_china_new` VALUES (4, '重庆', '8906', '人数');
+INSERT INTO `map_china_new` VALUES (5, '河北', '9716', '人数');
+INSERT INTO `map_china_new` VALUES (6, '河南', '5617', '人数');
+INSERT INTO `map_china_new` VALUES (7, '云南', '7151', '人数');
+INSERT INTO `map_china_new` VALUES (8, '辽宁', '6743', '人数');
+INSERT INTO `map_china_new` VALUES (9, '黑龙江', '7202', '人数');
+INSERT INTO `map_china_new` VALUES (10, '湖南', '9389', '人数');
+INSERT INTO `map_china_new` VALUES (11, '安徽', '9485', '人数');
+INSERT INTO `map_china_new` VALUES (12, '山东', '6896', '人数');
+INSERT INTO `map_china_new` VALUES (13, '新疆', '7260', '人数');
+INSERT INTO `map_china_new` VALUES (14, '江苏', '9821', '人数');
+INSERT INTO `map_china_new` VALUES (15, '浙江', '7515', '人数');
+INSERT INTO `map_china_new` VALUES (16, '江西', '5478', '人数');
+INSERT INTO `map_china_new` VALUES (17, '湖北', '9371', '人数');
+INSERT INTO `map_china_new` VALUES (18, '广西', '9802', '人数');
+INSERT INTO `map_china_new` VALUES (19, '甘肃', '7963', '人数');
+INSERT INTO `map_china_new` VALUES (20, '山西', '7768', '人数');
+INSERT INTO `map_china_new` VALUES (21, '内蒙古', '6326', '人数');
+INSERT INTO `map_china_new` VALUES (22, '陕西', '8913', '人数');
+INSERT INTO `map_china_new` VALUES (23, '吉林', '8976', '人数');
+INSERT INTO `map_china_new` VALUES (24, '福建', '6401', '人数');
+INSERT INTO `map_china_new` VALUES (25, '贵州', '7137', '人数');
+INSERT INTO `map_china_new` VALUES (26, '广东', '7612', '人数');
+INSERT INTO `map_china_new` VALUES (27, '青海', '7889', '人数');
+INSERT INTO `map_china_new` VALUES (28, '西藏', '8218', '人数');
+INSERT INTO `map_china_new` VALUES (29, '四川', '5466', '人数');
+INSERT INTO `map_china_new` VALUES (30, '宁夏', '7034', '人数');
+INSERT INTO `map_china_new` VALUES (31, '海南', '5392', '人数');
+INSERT INTO `map_china_new` VALUES (32, '台湾', '6428', '人数');
+INSERT INTO `map_china_new` VALUES (33, '香港', '6802', '人数');
+INSERT INTO `map_china_new` VALUES (34, '澳门', '6657', '人数');
 
 -- ----------------------------
 -- Table structure for map_china_tmp
