@@ -15,7 +15,8 @@ const (
 
 const (
 	DataBase  = "DataBase"
-	CSV       = "CSV"
+	CSV       = "Csv"
+	Rest      = "Rest"
 	MySQL     = "MySQL"
 	Oracle    = "Oracle"
 	SQLServer = "SQLServer"

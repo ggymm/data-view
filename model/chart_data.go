@@ -101,6 +101,8 @@ func (m *DataViewModel) GetChartData(params *schema.ChartDataParams, dataSource 
 			return dataResult, err
 		}
 		return dataResult, nil
+	} else if strings.EqualFold(dataSourceType, Rest) {
+		return nil, errors.New("暂未实现")
 	} else {
 		return nil, errors.New("数据源类型错误")
 	}
