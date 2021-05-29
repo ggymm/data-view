@@ -11,7 +11,7 @@
  Target Server Version : 50732
  File Encoding         : 65001
 
- Date: 28/05/2021 20:26:46
+ Date: 29/05/2021 15:42:10
 */
 
 SET NAMES utf8mb4;
@@ -700,6 +700,28 @@ INSERT INTO `map_china_tmp` VALUES (187, '菏泽', '194', NULL);
 INSERT INTO `map_china_tmp` VALUES (188, '合肥', '229', NULL);
 INSERT INTO `map_china_tmp` VALUES (189, '武汉', '273', NULL);
 INSERT INTO `map_china_tmp` VALUES (190, '大庆', '279', NULL);
+
+-- ----------------------------
+-- Table structure for pictorial_bar
+-- ----------------------------
+DROP TABLE IF EXISTS `pictorial_bar`;
+CREATE TABLE `pictorial_bar`  (
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `value` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `legend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of pictorial_bar
+-- ----------------------------
+INSERT INTO `pictorial_bar` VALUES ('驯鹿', '123', '出行方式');
+INSERT INTO `pictorial_bar` VALUES ('火箭', '60', '出行方式');
+INSERT INTO `pictorial_bar` VALUES ('飞机', '25', '出行方式');
+INSERT INTO `pictorial_bar` VALUES ('高铁', '18', '出行方式');
+INSERT INTO `pictorial_bar` VALUES ('轮船', '12', '出行方式');
+INSERT INTO `pictorial_bar` VALUES ('汽车', '9', '出行方式');
+INSERT INTO `pictorial_bar` VALUES ('跑步', '2', '出行方式');
+INSERT INTO `pictorial_bar` VALUES ('步行', '1', '出行方式');
 
 -- ----------------------------
 -- Table structure for pie
@@ -2587,6 +2609,21 @@ CREATE TABLE `template_2_sp_pie`  (
 -- Records of template_2_sp_pie
 -- ----------------------------
 INSERT INTO `template_2_sp_pie` VALUES (85);
+
+-- ----------------------------
+-- Table structure for template_2_sp_pie_new
+-- ----------------------------
+DROP TABLE IF EXISTS `template_2_sp_pie_new`;
+CREATE TABLE `template_2_sp_pie_new`  (
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `value` bigint(20) NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of template_2_sp_pie_new
+-- ----------------------------
+INSERT INTO `template_2_sp_pie_new` VALUES ('完成', 85);
+INSERT INTO `template_2_sp_pie_new` VALUES ('未完成', 15);
 
 -- ----------------------------
 -- Table structure for template_2_sr_histogram

@@ -23,6 +23,7 @@ func init() {
 	//ChartDataHandlers["lineStacking"] = charts.LineStackingGetDataHandle
 
 	ChartDataHandlers[charts.HistogramNormal] = charts.HistogramNormalGetDataHandle
+	ChartDataHandlers[charts.PictorialBar] = charts.PictorialBarGetDataHandle
 	//ChartDataHandlers["histogramGradient"] = charts.HistogramGradientGetDataHandle
 	//ChartDataHandlers["histogramGradientHorizontal"] = charts.HistogramGradientGetDataHandle
 	//ChartDataHandlers["histogramStacking"] = charts.HistogramStackingGetDataHandle
