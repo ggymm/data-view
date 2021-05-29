@@ -11,7 +11,7 @@
  Target Server Version : 50732
  File Encoding         : 65001
 
- Date: 29/05/2021 15:44:35
+ Date: 29/05/2021 15:48:31
 */
 
 SET NAMES utf8mb4;
@@ -183,7 +183,7 @@ CREATE TABLE `view_instance`  (
 -- ----------------------------
 -- Records of view_instance
 -- ----------------------------
-INSERT INTO `view_instance` VALUES (85, 1, '#263546', '/group1/default/20210513/17/59/6/云资源监控-背景.png', 1920, 1080, '', '', 1, 1, '2021-05-26 13:30:26', 1, '2021-05-26 17:36:42', 1);
-INSERT INTO `view_instance` VALUES (86, 1, '#263546', '/group1/default/20210513/18/00/6/企业实时销售数据-背景.png', 1920, 1080, '', '', 1, 1, '2021-05-29 15:17:35', 1, '2021-05-29 15:41:11', 1);
+INSERT INTO `view_instance` VALUES (85, 1, '#263546', '/group1/default/20210513/17/59/6/云资源监控-背景.png', 1920, 1080, '云资源监控', '', 1, 1, '2021-05-26 13:30:26', 1, '2021-05-26 17:36:42', 1);
+INSERT INTO `view_instance` VALUES (86, 1, '#263546', '/group1/default/20210513/18/00/6/企业实时销售数据-背景.png', 1920, 1080, '企业实时销售数据', '', 1, 1, '2021-05-29 15:17:35', 1, '2021-05-29 15:41:11', 1);
 
 SET FOREIGN_KEY_CHECKS = 1;
