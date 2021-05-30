@@ -58,3 +58,11 @@ func (m *ImageModel) GetList(businessId int64) ([]*Image, error) {
 	}
 	return list, nil
 }
+
+func (m *ImageModel) Save(image *Image) error {
+	image.DelFlag = IsExist
+	if _, err := m.Engine.Insert(image); err != nil {
+		return err
+	}
+	return nil
+}

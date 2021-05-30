@@ -20,12 +20,12 @@ type DataViewHandler struct {
 func (h *DataViewHandler) GetPage(c *gin.Context) {
 	var params schema.DataViewQueryParam
 	if err := ParseQuery(c, &params); err != nil {
-		httpError(c, http.StatusBadRequest, err)
+		httpError(c, http.StatusBadRequest, err.Error())
 		return
 	}
 	params.BusinessId = c.GetInt64("BusinessId")
 	if list, count, err := h.DataViewModel.GetPage(params); err != nil {
-		httpError(c, http.StatusInternalServerError, err)
+		httpError(c, http.StatusInternalServerError, err.Error())
 		return
 	} else {
 		returnJson(c, true, map[string]interface{}{"list": list, "count": count})
@@ -41,7 +41,7 @@ func (h *DataViewHandler) Get(c *gin.Context) {
 		return
 	}
 	if v, err := h.DataViewModel.Get(id, c.GetInt64("BusinessId")); err != nil {
-		httpError(c, http.StatusInternalServerError, err)
+		httpError(c, http.StatusInternalServerError, err.Error())
 		return
 	} else {
 		returnJson(c, true, v)
@@ -103,16 +103,16 @@ func (h *DataViewHandler) Update(c *gin.Context) {
 func (h *DataViewHandler) GetChartData(c *gin.Context) {
 	var params *schema.ChartDataParams
 	if err := ParseQuery(c, &params); err != nil {
-		httpError(c, http.StatusBadRequest, err)
+		httpError(c, http.StatusBadRequest, err.Error())
 		return
 	}
 	dataSource, err := h.DataSourceModel.Get(params.Database)
 	if err != nil {
-		httpError(c, http.StatusInternalServerError, err)
+		httpError(c, http.StatusInternalServerError, err.Error())
 		return
 	}
 	if result, err := h.DataViewModel.GetChartData(params, dataSource); err != nil {
-		httpError(c, http.StatusInternalServerError, err)
+		httpError(c, http.StatusInternalServerError, err.Error())
 		return
 	} else {
 		returnJson(c, true, result)

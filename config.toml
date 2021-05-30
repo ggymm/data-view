@@ -15,12 +15,12 @@ username = "root"
 password = "root"
 
 [storage]
-type = "go-fastdfs"
-url = "http://192.168.50.158:9000"
+# type = "go-fastdfs"
+# url = "http://192.168.50.158:9000"
 
 # type = "minio"
 # url = "http://192.168.50.158:9000"
 
-# type = "custom"
-# url = "http://localhost:9421"
-# path = "storage"
+type = "custom"
+url = "http://localhost:9421"
+path = "storage"
