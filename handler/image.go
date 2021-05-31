@@ -92,3 +92,13 @@ func (h *ImageHandler) Upload(c *gin.Context) {
 		}
 	}
 }
+
+func (h *ImageHandler) UploadThumbnail(c *gin.Context) {
+	if path, err := StorageHandlers[config.Instance.Storage.Type].Upload(c); err != nil {
+		httpError(c, http.StatusInternalServerError, err.Error())
+		return
+	} else {
+		returnJson(c, true, path)
+		return
+	}
+}

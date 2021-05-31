@@ -50,6 +50,7 @@ func (r *Router) NewRouter() (router *gin.Engine) {
 			image.GET("/list", r.Image.GetList)
 			image.GET("/upload.html", r.Image.UploadHtml)
 			image.POST("/", r.Image.Upload)
+			image.POST("/thumbnail", r.Image.UploadThumbnail)
 		}
 
 		// 数据可视化大屏管理
