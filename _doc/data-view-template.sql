@@ -11,7 +11,7 @@
  Target Server Version : 50732
  File Encoding         : 65001
 
- Date: 29/05/2021 15:42:10
+ Date: 31/05/2021 13:36:47
 */
 
 SET NAMES utf8mb4;
@@ -357,6 +357,56 @@ INSERT INTO `histogram_stacking` VALUES (11, '视频广告', '周四', '广告',
 INSERT INTO `histogram_stacking` VALUES (12, '视频广告', '周五', '广告', 190);
 INSERT INTO `histogram_stacking` VALUES (13, '视频广告', '周六', '广告', 330);
 INSERT INTO `histogram_stacking` VALUES (14, '视频广告', '周日', '广告', 410);
+
+-- ----------------------------
+-- Table structure for histogram_stacking_new
+-- ----------------------------
+DROP TABLE IF EXISTS `histogram_stacking_new`;
+CREATE TABLE `histogram_stacking_new`  (
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `stack` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `legend` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of histogram_stacking_new
+-- ----------------------------
+INSERT INTO `histogram_stacking_new` VALUES ('周一', '320', 'total', 'Direct');
+INSERT INTO `histogram_stacking_new` VALUES ('周二', '302', 'total', 'Direct');
+INSERT INTO `histogram_stacking_new` VALUES ('周三', '301', 'total', 'Direct');
+INSERT INTO `histogram_stacking_new` VALUES ('周四', '334', 'total', 'Direct');
+INSERT INTO `histogram_stacking_new` VALUES ('周五', '390', 'total', 'Direct');
+INSERT INTO `histogram_stacking_new` VALUES ('周六', '330', 'total', 'Direct');
+INSERT INTO `histogram_stacking_new` VALUES ('周日', '320', 'total', 'Direct');
+INSERT INTO `histogram_stacking_new` VALUES ('周一', '120', 'total', 'Mail Ad');
+INSERT INTO `histogram_stacking_new` VALUES ('周二', '132', 'total', 'Mail Ad');
+INSERT INTO `histogram_stacking_new` VALUES ('周三', '101', 'total', 'Mail Ad');
+INSERT INTO `histogram_stacking_new` VALUES ('周四', '134', 'total', 'Mail Ad');
+INSERT INTO `histogram_stacking_new` VALUES ('周五', '90', 'total', 'Mail Ad');
+INSERT INTO `histogram_stacking_new` VALUES ('周六', '230', 'total', 'Mail Ad');
+INSERT INTO `histogram_stacking_new` VALUES ('周日', '210', 'total', 'Mail Ad');
+INSERT INTO `histogram_stacking_new` VALUES ('周一', '220', 'total', 'Affiliate Ad');
+INSERT INTO `histogram_stacking_new` VALUES ('周二', '182', 'total', 'Affiliate Ad');
+INSERT INTO `histogram_stacking_new` VALUES ('周三', '191', 'total', 'Affiliate Ad');
+INSERT INTO `histogram_stacking_new` VALUES ('周四', '234', 'total', 'Affiliate Ad');
+INSERT INTO `histogram_stacking_new` VALUES ('周五', '290', 'total', 'Affiliate Ad');
+INSERT INTO `histogram_stacking_new` VALUES ('周六', '330', 'total', 'Affiliate Ad');
+INSERT INTO `histogram_stacking_new` VALUES ('周日', '310', 'total', 'Affiliate Ad');
+INSERT INTO `histogram_stacking_new` VALUES ('周一', '150', 'total', 'Video Ad');
+INSERT INTO `histogram_stacking_new` VALUES ('周二', '212', 'total', 'Video Ad');
+INSERT INTO `histogram_stacking_new` VALUES ('周三', '201', 'total', 'Video Ad');
+INSERT INTO `histogram_stacking_new` VALUES ('周四', '154', 'total', 'Video Ad');
+INSERT INTO `histogram_stacking_new` VALUES ('周五', '190', 'total', 'Video Ad');
+INSERT INTO `histogram_stacking_new` VALUES ('周六', '330', 'total', 'Video Ad');
+INSERT INTO `histogram_stacking_new` VALUES ('周日', '410', 'total', 'Video Ad');
+INSERT INTO `histogram_stacking_new` VALUES ('周一', '820', 'total', 'Search Engine');
+INSERT INTO `histogram_stacking_new` VALUES ('周二', '832', 'total', 'Search Engine');
+INSERT INTO `histogram_stacking_new` VALUES ('周三', '910', 'total', 'Search Engine');
+INSERT INTO `histogram_stacking_new` VALUES ('周四', '934', 'total', 'Search Engine');
+INSERT INTO `histogram_stacking_new` VALUES ('周五', '1290', 'total', 'Search Engine');
+INSERT INTO `histogram_stacking_new` VALUES ('周六', '1330', 'total', 'Search Engine');
+INSERT INTO `histogram_stacking_new` VALUES ('周日', '1320', 'total', 'Search Engine');
 
 -- ----------------------------
 -- Table structure for line_normal
@@ -2778,6 +2828,21 @@ CREATE TABLE `template_3_cpuur_pie`  (
 INSERT INTO `template_3_cpuur_pie` VALUES (62);
 
 -- ----------------------------
+-- Table structure for template_3_cpuur_pie_new
+-- ----------------------------
+DROP TABLE IF EXISTS `template_3_cpuur_pie_new`;
+CREATE TABLE `template_3_cpuur_pie_new`  (
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `value` bigint(20) NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of template_3_cpuur_pie_new
+-- ----------------------------
+INSERT INTO `template_3_cpuur_pie_new` VALUES ('利用', 60);
+INSERT INTO `template_3_cpuur_pie_new` VALUES ('未利用', 40);
+
+-- ----------------------------
 -- Table structure for template_3_mu_line
 -- ----------------------------
 DROP TABLE IF EXISTS `template_3_mu_line`;
@@ -2922,6 +2987,7 @@ INSERT INTO `template_3_tm_list` VALUES ('2017-05', '106.2', '97');
 INSERT INTO `template_3_tm_list` VALUES ('2017-06', '106.1', '98.2');
 INSERT INTO `template_3_tm_list` VALUES ('2017-07', '105.8', '98.7');
 INSERT INTO `template_3_tm_list` VALUES ('2017-08', '106.7', '99.8');
+INSERT INTO `template_3_tm_list` VALUES ('2017-09', '100', '120');
 
 -- ----------------------------
 -- Table structure for template_3_ts_pie
@@ -2935,6 +3001,21 @@ CREATE TABLE `template_3_ts_pie`  (
 -- Records of template_3_ts_pie
 -- ----------------------------
 INSERT INTO `template_3_ts_pie` VALUES (62);
+
+-- ----------------------------
+-- Table structure for template_3_ts_pie_new
+-- ----------------------------
+DROP TABLE IF EXISTS `template_3_ts_pie_new`;
+CREATE TABLE `template_3_ts_pie_new`  (
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `value` bigint(20) NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of template_3_ts_pie_new
+-- ----------------------------
+INSERT INTO `template_3_ts_pie_new` VALUES ('成功', 62);
+INSERT INTO `template_3_ts_pie_new` VALUES ('未成功', 38);
 
 -- ----------------------------
 -- Table structure for template_3_tta_line

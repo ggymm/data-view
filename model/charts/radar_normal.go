@@ -51,7 +51,6 @@ var RadarNormalGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx
 			max       string
 			dimension string
 		)
-		// 封装数据对象
 		for k, v := range temp {
 			if k == params.Name {
 				name = StrVal(v)

@@ -60,7 +60,7 @@ func (h *ImageHandler) UploadHtml(c *gin.Context) {
 </body>
 </html>`
 	c.Header("Content-Type", "text/html; charset=utf-8")
-	c.String(200, uploadHtml)
+	c.String(http.StatusOK, uploadHtml)
 	return
 }
 
