@@ -87,7 +87,7 @@ func (m *DataViewModel) GetPage(params schema.DataViewQueryParam) ([]*ViewInstan
 	query["del_flag"] = IsExist
 	// 获取列表
 	columns := []string{"instance_id", "instance_width", "instance_height", "instance_title", "instance_view_thumbnail", "update_time"}
-	if err := m.Engine.Cols(columns...).Where(query).Limit(params.Size, params.Offset()).OrderBy(DefaultOrder).Find(&list); err != nil {
+	if err := m.Engine.Cols(columns...).Where(query).Limit(params.Size, params.Offset()).OrderBy("create_time").Find(&list); err != nil {
 		return list, count, err
 	}
 	if count, err := m.Engine.Where(query).Count(new(ViewInstance)); err != nil {
