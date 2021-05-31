@@ -1,10 +1,11 @@
 package handler
 
 import (
-	"data-view/model"
-	"data-view/schema"
 	"net/http"
 	"strconv"
+
+	"data-view/model"
+	"data-view/schema"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/wire"

@@ -18,6 +18,9 @@ type ChartDataParams struct {
 	Dimension string `form:"dimension"`
 	Name      string `form:"name"`
 	Value     string `form:"value"`
+
+	// 雷达图特殊字段
+	Max string `form:"max"`
 }
 
 type ViewChartItem struct {

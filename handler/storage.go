@@ -1,12 +1,14 @@
 package handler
 
 import (
-	"data-view/config"
 	"errors"
-	"github.com/gin-gonic/gin"
 	"os"
 	"path/filepath"
 	"time"
+
+	"data-view/config"
+
+	"github.com/gin-gonic/gin"
 )
 
 var StorageHandlers = make(map[string]Storage)

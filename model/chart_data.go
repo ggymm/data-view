@@ -39,7 +39,7 @@ func init() {
 	//ChartDataHandlers["pie2D"] = charts.PieNormalGetDataHandle
 	//ChartDataHandlers["piePercent"] = charts.PiePercentGetDataHandle
 
-	//ChartDataHandlers["radarBasic"] = charts.RadarBasicGetDataHandle
+	ChartDataHandlers[charts.RadarNormal] = charts.RadarNormalGetDataHandle
 
 	//ChartDataHandlers["heatBasic"] = charts.HeatBasicGetDataHandle
 
