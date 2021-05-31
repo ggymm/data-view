@@ -11,7 +11,7 @@
  Target Server Version : 50732
  File Encoding         : 65001
 
- Date: 31/05/2021 17:20:11
+ Date: 31/05/2021 20:43:15
 */
 
 SET NAMES utf8mb4;
@@ -3225,6 +3225,99 @@ INSERT INTO `template_4_data8_line` VALUES ('五月', '600', 'data');
 INSERT INTO `template_4_data8_line` VALUES ('六月', '400', 'data');
 
 -- ----------------------------
+-- Table structure for template_5_map
+-- ----------------------------
+DROP TABLE IF EXISTS `template_5_map`;
+CREATE TABLE `template_5_map`  (
+  `id` int(11) NULL DEFAULT NULL,
+  `name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `value` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `legend` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of template_5_map
+-- ----------------------------
+INSERT INTO `template_5_map` VALUES (1, '北京', '7040', '人数');
+INSERT INTO `template_5_map` VALUES (2, '天津', '9876', '人数');
+INSERT INTO `template_5_map` VALUES (3, '上海', '8278', '人数');
+INSERT INTO `template_5_map` VALUES (4, '重庆', '8906', '人数');
+INSERT INTO `template_5_map` VALUES (5, '河北', '9716', '人数');
+INSERT INTO `template_5_map` VALUES (6, '河南', '5617', '人数');
+INSERT INTO `template_5_map` VALUES (7, '云南', '7151', '人数');
+INSERT INTO `template_5_map` VALUES (8, '辽宁', '6743', '人数');
+INSERT INTO `template_5_map` VALUES (9, '黑龙江', '7202', '人数');
+INSERT INTO `template_5_map` VALUES (10, '湖南', '9389', '人数');
+INSERT INTO `template_5_map` VALUES (11, '安徽', '9485', '人数');
+INSERT INTO `template_5_map` VALUES (12, '山东', '6896', '人数');
+INSERT INTO `template_5_map` VALUES (13, '新疆', '7260', '人数');
+INSERT INTO `template_5_map` VALUES (14, '江苏', '9821', '人数');
+INSERT INTO `template_5_map` VALUES (15, '浙江', '7515', '人数');
+INSERT INTO `template_5_map` VALUES (16, '江西', '5478', '人数');
+INSERT INTO `template_5_map` VALUES (17, '湖北', '9371', '人数');
+INSERT INTO `template_5_map` VALUES (18, '广西', '9802', '人数');
+INSERT INTO `template_5_map` VALUES (19, '甘肃', '7963', '人数');
+INSERT INTO `template_5_map` VALUES (20, '山西', '7768', '人数');
+INSERT INTO `template_5_map` VALUES (21, '内蒙古', '6326', '人数');
+INSERT INTO `template_5_map` VALUES (22, '陕西', '8913', '人数');
+INSERT INTO `template_5_map` VALUES (23, '吉林', '8976', '人数');
+INSERT INTO `template_5_map` VALUES (24, '福建', '6401', '人数');
+INSERT INTO `template_5_map` VALUES (25, '贵州', '7137', '人数');
+INSERT INTO `template_5_map` VALUES (26, '广东', '7612', '人数');
+INSERT INTO `template_5_map` VALUES (27, '青海', '7889', '人数');
+INSERT INTO `template_5_map` VALUES (28, '西藏', '8218', '人数');
+INSERT INTO `template_5_map` VALUES (29, '四川', '5466', '人数');
+INSERT INTO `template_5_map` VALUES (30, '宁夏', '7034', '人数');
+INSERT INTO `template_5_map` VALUES (31, '海南', '5392', '人数');
+INSERT INTO `template_5_map` VALUES (32, '台湾', '6428', '人数');
+INSERT INTO `template_5_map` VALUES (33, '香港', '6802', '人数');
+INSERT INTO `template_5_map` VALUES (34, '澳门', '6657', '人数');
+
+-- ----------------------------
+-- Table structure for template_5_ps_histogram1
+-- ----------------------------
+DROP TABLE IF EXISTS `template_5_ps_histogram1`;
+CREATE TABLE `template_5_ps_histogram1`  (
+  `x` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `y` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `legend` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of template_5_ps_histogram1
+-- ----------------------------
+INSERT INTO `template_5_ps_histogram1` VALUES ('苹果', '9678', 'data');
+INSERT INTO `template_5_ps_histogram1` VALUES ('三星', '8331', 'data');
+INSERT INTO `template_5_ps_histogram1` VALUES ('华为', '9628', 'data');
+INSERT INTO `template_5_ps_histogram1` VALUES ('oppo', '7241', 'data');
+INSERT INTO `template_5_ps_histogram1` VALUES ('vivo', '7331', 'data');
+INSERT INTO `template_5_ps_histogram1` VALUES ('小米', '5414', 'data');
+
+-- ----------------------------
+-- Table structure for template_5_ps_histogram2
+-- ----------------------------
+DROP TABLE IF EXISTS `template_5_ps_histogram2`;
+CREATE TABLE `template_5_ps_histogram2`  (
+  `x` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `y` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `legend` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of template_5_ps_histogram2
+-- ----------------------------
+INSERT INTO `template_5_ps_histogram2` VALUES ('电子网络', '76', '男');
+INSERT INTO `template_5_ps_histogram2` VALUES ('销售', '65', '男');
+INSERT INTO `template_5_ps_histogram2` VALUES ('教育', '50', '男');
+INSERT INTO `template_5_ps_histogram2` VALUES ('建筑', '48', '男');
+INSERT INTO `template_5_ps_histogram2` VALUES ('娱乐传媒', '42', '男');
+INSERT INTO `template_5_ps_histogram2` VALUES ('电子网络', '24', '女');
+INSERT INTO `template_5_ps_histogram2` VALUES ('销售', '35', '女');
+INSERT INTO `template_5_ps_histogram2` VALUES ('教育', '50', '女');
+INSERT INTO `template_5_ps_histogram2` VALUES ('建筑', '52', '女');
+INSERT INTO `template_5_ps_histogram2` VALUES ('娱乐传媒', '58', '女');
+
+-- ----------------------------
 -- Table structure for template_5_sd_histogram
 -- ----------------------------
 DROP TABLE IF EXISTS `template_5_sd_histogram`;
@@ -3243,6 +3336,65 @@ INSERT INTO `template_5_sd_histogram` VALUES ('华为', '6160', 'data');
 INSERT INTO `template_5_sd_histogram` VALUES ('oppo', '7373', 'data');
 INSERT INTO `template_5_sd_histogram` VALUES ('vivo', '7755', 'data');
 INSERT INTO `template_5_sd_histogram` VALUES ('小米', '6420', 'data');
+
+-- ----------------------------
+-- Table structure for template_5_sd_line
+-- ----------------------------
+DROP TABLE IF EXISTS `template_5_sd_line`;
+CREATE TABLE `template_5_sd_line`  (
+  `x` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `y` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `legend` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of template_5_sd_line
+-- ----------------------------
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-18', '20453', '今日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-19', '28403', '今日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-20', '12525', '今日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-21', '15983', '今日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-22', '17782', '今日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-23', '14701', '今日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-24', '29068', '今日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-25', '25415', '今日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-26', '26544', '今日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-27', '14805', '今日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-28', '11801', '今日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-29', '14085', '今日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-03-01', '15259', '今日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-03-02', '18643', '今日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-03-03', '17029', '今日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-18', '4979', '上周');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-19', '3686', '上周');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-20', '3508', '上周');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-21', '4062', '上周');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-22', '3218', '上周');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-23', '2426', '上周');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-24', '1977', '上周');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-25', '1673', '上周');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-26', '2164', '上周');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-27', '3770', '上周');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-28', '3261', '上周');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-29', '3800', '上周');
+INSERT INTO `template_5_sd_line` VALUES ('2020-03-01', '4173', '上周');
+INSERT INTO `template_5_sd_line` VALUES ('2020-03-02', '4348', '上周');
+INSERT INTO `template_5_sd_line` VALUES ('2020-03-03', '2337', '上周');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-18', '2138', '昨日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-19', '6599', '昨日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-20', '5164', '昨日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-21', '16148', '昨日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-22', '11476', '昨日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-23', '4676', '昨日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-24', '17366', '昨日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-25', '10358', '昨日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-26', '4951', '昨日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-27', '14884', '昨日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-28', '2491', '昨日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-02-29', '18739', '昨日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-03-01', '5109', '昨日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-03-02', '7476', '昨日');
+INSERT INTO `template_5_sd_line` VALUES ('2020-03-03', '8042', '昨日');
 
 -- ----------------------------
 -- Table structure for template_5_sd_pie

@@ -11,7 +11,7 @@
  Target Server Version : 50732
  File Encoding         : 65001
 
- Date: 31/05/2021 17:20:05
+ Date: 31/05/2021 20:43:24
 */
 
 SET NAMES utf8mb4;
@@ -60,7 +60,7 @@ CREATE TABLE `image`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `del_flag` tinyint(4) NULL DEFAULT NULL COMMENT '删除标识（-1：不存在；1：存在）',
   PRIMARY KEY (`image_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of image
@@ -74,6 +74,7 @@ INSERT INTO `image` VALUES (17, '云服务监控-背景-custom.png', '/storage/2
 INSERT INTO `image` VALUES (18, '云资源监控-背景-custom.png', '/storage/2021/0530/云资源监控-背景.png', 61983, 1, 1, '2021-05-30 21:27:37', 1, '2021-05-30 21:27:37', 1);
 INSERT INTO `image` VALUES (19, '企业实时销售数据-背景-custom.png', '/storage/2021/0530/企业实时销售数据-背景.png', 758743, 1, 1, '2021-05-30 21:28:07', 1, '2021-05-30 21:28:07', 1);
 INSERT INTO `image` VALUES (20, '通用模板1-背景-custom.png', '/storage/2021/0531/通用模板1-背景.png', 27247, 1, 1, '2021-05-31 13:40:13', 1, '2021-05-31 13:40:13', 1);
+INSERT INTO `image` VALUES (21, '零售行业数据可视化-背景-custom.png', '/storage/2021/0531/零售行业数据可视化-背景.png', 545340, 1, 1, '2021-05-31 19:40:28', 1, '2021-05-31 19:40:28', 1);
 
 -- ----------------------------
 -- Table structure for view_chart_item
