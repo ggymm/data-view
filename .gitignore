@@ -3,6 +3,5 @@ _build/linux
 _build/windows
 vendor
 log
-storage
 .idea
 go.sum
