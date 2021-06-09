@@ -73,3 +73,11 @@ shutil.copy2(os.path.join(code_dir, config_name),
              os.path.join(code_dir, build_folder, "linux"))
 shutil.copy2(os.path.join(code_dir, config_name),
              os.path.join(code_dir, build_folder, "darwin"))
+
+print u"拷贝其他文件目录"
+shutil.copytree(os.path.join(code_dir, "storage"),
+                os.path.join(code_dir, build_folder, "windows", "storage"))
+shutil.copytree(os.path.join(code_dir, "storage"),
+                os.path.join(code_dir, build_folder, "linux", "storage"))
+shutil.copytree(os.path.join(code_dir, "storage"),
+                os.path.join(code_dir, build_folder, "darwin", "storage"))
