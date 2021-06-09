@@ -26,6 +26,7 @@ type ChartDataParams struct {
 type ViewChartItem struct {
 	ItemChartData string `json:"chartData"`
 	ItemChartType string `json:"chartType"`
+	ItemRotate    int    `json:"rotate"`
 	ItemLock      string `json:"lock"`
 	ItemChoose    string `json:"choose"`
 	ItemData      string `json:"data"`
