@@ -39,6 +39,7 @@ type ViewChartItem struct {
 	ItemId        int64  `json:"item_id" xorm:"not null pk autoincr BIGINT(20)"`
 	InstanceId    int64  `json:"instance_id" xorm:"BIGINT(20)"`
 	ItemChartData string `json:"chartData" xorm:"TEXT"`
+	ItemChartName string `json:"chartName" xorm:"VARCHAR(50)"`
 	ItemChartType string `json:"chartType" xorm:"VARCHAR(50)"`
 	ItemRotate    int    `json:"rotate" xorm:"INT(11)"`
 	ItemLock      string `json:"lock" xorm:"VARCHAR(10)"`
