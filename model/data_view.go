@@ -2,8 +2,6 @@ package model
 
 import (
 	"errors"
-	"strconv"
-	"strings"
 	"time"
 
 	"data-view/schema"
@@ -38,19 +36,21 @@ type ViewInstance struct {
 type ViewChartItem struct {
 	ItemId        int64  `json:"item_id" xorm:"not null pk autoincr BIGINT(20)"`
 	InstanceId    int64  `json:"instance_id" xorm:"BIGINT(20)"`
-	ItemChartData string `json:"chartData" xorm:"TEXT"`
+	ItemElId      string `json:"elId" xorm:"VARCHAR(50)"`
+	ItemIndex     int    `json:"index" xorm:"INT(11)"`
 	ItemChartName string `json:"chartName" xorm:"VARCHAR(50)"`
 	ItemChartType string `json:"chartType" xorm:"VARCHAR(50)"`
+	ItemChartData string `json:"chartData" xorm:"TEXT"`
+	ItemData      string `json:"data" xorm:"TEXT"`
 	ItemRotate    int    `json:"rotate" xorm:"INT(11)"`
+	ItemShow      string `json:"show" xorm:"VARCHAR(10)"`
 	ItemLock      string `json:"lock" xorm:"VARCHAR(10)"`
 	ItemChoose    string `json:"choose" xorm:"VARCHAR(10)"`
-	ItemData      string `json:"data" xorm:"TEXT"`
-	ItemHeight    int64  `json:"height" xorm:"BIGINT(20)"`
-	ItemI         string `json:"i" xorm:"VARCHAR(20)"`
 	ItemInterval  int64  `json:"interval" xorm:"BIGINT(20)"`
 	ItemOption    string `json:"option" xorm:"TEXT"`
 	ItemRefresh   string `json:"refresh" xorm:"VARCHAR(10)"`
 	ItemWidth     int64  `json:"width" xorm:"BIGINT(20)"`
+	ItemHeight    int64  `json:"height" xorm:"BIGINT(20)"`
 	ItemX         int64  `json:"x" xorm:"BIGINT(20)"`
 	ItemY         int64  `json:"y" xorm:"BIGINT(20)"`
 	ItemVersion   int64  `json:"version" xorm:"BIGINT(20)"`
@@ -59,23 +59,10 @@ type ViewChartItem struct {
 type ViewInstancePro struct {
 	ViewInstance `xorm:"extends"`
 	ChartItems   []*ViewChartItem `json:"chart_items" xorm:"-"`
-	StartIndex   int64            `json:"start_index" xorm:"-"`
 }
 
 func (ViewInstancePro) TableName() string {
 	return "view_instance"
-}
-
-func (vip *ViewInstancePro) setStartIndex() {
-	chartItems := vip.ChartItems
-	if len(chartItems) > 0 {
-		itemI := chartItems[len(chartItems)-1].ItemI
-		index := strings.Replace(itemI, "chart", "", -1)
-		i, _ := strconv.ParseInt(index, 10, 64)
-		vip.StartIndex = i + 1
-	} else {
-		vip.StartIndex = 0
-	}
 }
 
 func (m *DataViewModel) GetPage(params schema.DataViewQueryParam) ([]*ViewInstance, int64, error) {
@@ -112,11 +99,10 @@ func (m *DataViewModel) Get(id, businessId int64) (*ViewInstancePro, error) {
 			if err := m.Engine.Where(map[string]interface{}{
 				"instance_id":  id,
 				"item_version": v.InstanceVersion,
-			}).OrderBy("REPLACE (item_i, 'chart', '') + 0").Find(&chartItems); err != nil {
+			}).OrderBy("item_index").Find(&chartItems); err != nil {
 				return v, err
 			}
 			v.ChartItems = chartItems
-			v.setStartIndex()
 			return v, err
 		} else {
 			return nil, errors.New("数据不存在")

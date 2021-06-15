@@ -15,6 +15,7 @@ func main() {
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT)
 
+	config.Init()
 	injector, cleanFunc, err := BuildInjector()
 	if err != nil {
 		panic(err)

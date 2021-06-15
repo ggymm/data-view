@@ -24,19 +24,21 @@ type ChartDataParams struct {
 }
 
 type ViewChartItem struct {
-	ItemChartData string `json:"chartData"`
+	ItemElId      string `json:"elId"`
+	ItemIndex     int    `json:"index"`
 	ItemChartName string `json:"chartName"`
 	ItemChartType string `json:"chartType"`
+	ItemChartData string `json:"chartData"`
+	ItemData      string `json:"data"`
 	ItemRotate    int    `json:"rotate"`
+	ItemShow      string `json:"show"`
 	ItemLock      string `json:"lock"`
 	ItemChoose    string `json:"choose"`
-	ItemData      string `json:"data"`
-	ItemHeight    int64  `json:"height"`
-	ItemI         string `json:"i"`
 	ItemInterval  int64  `json:"interval"`
 	ItemOption    string `json:"option"`
 	ItemRefresh   string `json:"refresh"`
 	ItemWidth     int64  `json:"width"`
+	ItemHeight    int64  `json:"height"`
 	ItemX         int64  `json:"x"`
 	ItemY         int64  `json:"y"`
 	ItemVersion   int64  `json:"version"`

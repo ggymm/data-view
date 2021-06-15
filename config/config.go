@@ -40,7 +40,7 @@ type storageConfig struct {
 
 var Instance *GlobalConfig
 
-func init() {
+func Init() {
 	var (
 		err    error
 		config *toml.Tree

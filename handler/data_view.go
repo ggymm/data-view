@@ -120,3 +120,7 @@ func (h *DataViewHandler) GetChartData(c *gin.Context) {
 		return
 	}
 }
+
+func (h *DataViewHandler) GetTestChartData(c *gin.Context) {
+
+}

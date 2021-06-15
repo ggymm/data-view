@@ -37,7 +37,7 @@ func (r *Router) NewRouter() (router *gin.Engine) {
 		})
 
 		// 数据源管理
-		dataSource := v1.Group("dataSource/").Use(middleware.CheckUser())
+		dataSource := v1.Group("data-source/").Use(middleware.CheckUser())
 		{
 			dataSource.GET("/", r.DataSource.GetPage)
 			dataSource.GET("/list", r.DataSource.GetList)
@@ -54,13 +54,21 @@ func (r *Router) NewRouter() (router *gin.Engine) {
 		}
 
 		// 数据可视化大屏管理
-		dataView := v1.Group("dataView/").Use(middleware.CheckUser())
+		dataView := v1.Group("data-view/").Use(middleware.CheckUser())
 		{
 			dataView.GET("/", r.DataView.GetPage)
 			dataView.GET("/:id", r.DataView.Get)
 			dataView.POST("/", r.DataView.Create)
 			dataView.PUT("/", r.DataView.Update)
-			dataView.GET("/chartData", r.DataView.GetChartData)
+			dataView.GET("/chart-data", r.DataView.GetChartData)
+			// 图表测试获取数据接口
+			dataView.GET("/test-chart-data", r.DataView.GetTestChartData)
+		}
+
+		// 数据报表管理
+		dataReport := v1.Group("data-report/").Use(middleware.CheckUser())
+		{
+			dataReport.GET("/", r.DataView.GetPage)
 		}
 	}
 
