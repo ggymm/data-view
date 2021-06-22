@@ -1,0 +1,93 @@
+#!/bin/bash
+
+WORKSPACE=$(cd $(dirname $0)/; pwd)
+cd $WORKSPACE
+
+module=
+appname=$(basename $WORKSPACE)
+## 注意：这里每个应用的启动命令是不一样的，
+## 启动命令必须在前端运行(即不需要nohup)运行，
+## 系统会自动加上nohup运行 
+## 例如：run_cmd=java -jar spring-hello.jar
+run_cmd=./data-view
+pidfile=app.pid
+logfile=app.log
+
+function check_pid() {
+    if [ -f $pidfile ];then
+        pid=`cat $pidfile`
+        if [ -n $pid ]; then
+            running=`ps -p $pid|grep -v "PID TTY" |wc -l`
+            return $running
+        fi
+    fi
+    return 0
+}
+
+#应用启动接口
+function start() {
+    check_pid
+    running=$?
+    if [ $running -gt 0 ];then
+        echo -n "$appname now is running already, pid="
+          cat $pidfile
+        return 1
+    fi
+    
+    nohup $run_cmd   &> $logfile &
+    echo $! > $pidfile
+    #echo "$appname started..., pid=$!"
+	sleep 3
+	status
+}
+#停止应用接口
+function stop() {
+    pid=`cat $pidfile`
+    kill $pid
+    echo "$appname stoped..."
+}
+
+function restart() {
+    stop
+    sleep 3
+    start
+}
+#应用状态检测接口
+function status() {
+    check_pid
+    running=$?
+    if [ $running -gt 0 ];then
+        echo -n "$appname now is running, pid="
+        cat $pidfile
+		#注意：以下输出不能修改，程序会自动根据这个输出做状态判断 
+		echo "app_status:running"
+    else
+	    #注意：以下输出不能修改，程序会自动根据这个输出做状态判断 
+        echo "$appname is stoped"
+		echo "app_status:stoped"
+    fi
+}
+
+function tailf() {
+    timeout 50 tail -1000f $logfile
+}
+
+function help() {
+    echo "$0 start|stop|restart|status|tail|help"
+}
+
+if [ "$1" == "" ]; then
+    help
+elif [ "$1" == "stop" ];then
+    stop
+elif [ "$1" == "start" ];then
+    start
+elif [ "$1" == "restart" ];then
+    restart
+elif [ "$1" == "status" ];then
+    status
+elif [ "$1" == "tail" ];then
+    tailf
+else
+    help
+fi

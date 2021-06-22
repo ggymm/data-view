@@ -14,8 +14,9 @@ const (
 )
 
 const (
+	Static    = "Static"
 	DataBase  = "DataBase"
-	CSV       = "Csv"
+	File      = "File"
 	Rest      = "Rest"
 	MySQL     = "MySQL"
 	Oracle    = "Oracle"

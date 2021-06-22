@@ -98,7 +98,7 @@ func (m *DataViewModel) GetChartData(params *schema.ChartDataParams, dataSource 
 			return dataResult, err
 		}
 		return dataResult, nil
-	} else if strings.EqualFold(dataSourceType, CSV) {
+	} else if strings.EqualFold(dataSourceType, File) {
 		if dataResult, err = ChartDataHandlers[chartType].GetDataFromCsv(params); err != nil {
 			return dataResult, err
 		}

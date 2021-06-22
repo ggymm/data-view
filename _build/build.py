@@ -3,8 +3,8 @@
 
 import os
 import platform
-import sys
 import shutil
+import sys
 
 project_name = "data-view"
 config_name = "config.toml"
@@ -75,9 +75,14 @@ shutil.copy2(os.path.join(code_dir, config_name),
              os.path.join(code_dir, build_folder, "darwin"))
 
 print u"拷贝其他文件目录"
+shutil.rmtree(os.path.join(code_dir, build_folder, "windows", "storage"))
 shutil.copytree(os.path.join(code_dir, "storage"),
                 os.path.join(code_dir, build_folder, "windows", "storage"))
+
+shutil.rmtree(os.path.join(code_dir, build_folder, "linux", "storage"))
 shutil.copytree(os.path.join(code_dir, "storage"),
                 os.path.join(code_dir, build_folder, "linux", "storage"))
+
+shutil.rmtree(os.path.join(code_dir, build_folder, "darwin", "storage"))
 shutil.copytree(os.path.join(code_dir, "storage"),
                 os.path.join(code_dir, build_folder, "darwin", "storage"))
