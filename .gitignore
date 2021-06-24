@@ -3,5 +3,6 @@ vendor
 _build/darwin
 _build/linux
 _build/windows
+_doc
 log
 go.sum
