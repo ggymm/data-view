@@ -35,7 +35,8 @@ func (h *ImageHandler) GetPage(c *gin.Context) {
 }
 
 func (h *ImageHandler) GetList(c *gin.Context) {
-	if list, err := h.ImageModel.GetList(c.GetInt64("BusinessId")); err != nil {
+	imageType := c.DefaultQuery("imageType", "screen_background")
+	if list, err := h.ImageModel.GetList(c.GetInt64("BusinessId"), imageType); err != nil {
 		httpError(c, http.StatusInternalServerError, err.Error())
 		return
 	} else {
@@ -55,6 +56,7 @@ func (h *ImageHandler) UploadHtml(c *gin.Context) {
 <body>
 <form action="/api/v1/image" method="post" enctype="multipart/form-data">
 	<input type="file" name="file" />
+    <input type="text" name="type" value="screen_background" />
 	<input type="submit" value="上传" />
 </form>
 </body>
@@ -66,6 +68,7 @@ func (h *ImageHandler) UploadHtml(c *gin.Context) {
 
 func (h *ImageHandler) Upload(c *gin.Context) {
 	file, err := c.FormFile("file")
+	imageType := c.PostForm("imageType")
 	if err != nil {
 		httpError(c, http.StatusBadRequest, err.Error())
 		return
@@ -78,6 +81,7 @@ func (h *ImageHandler) Upload(c *gin.Context) {
 		image.ImageName = file.Filename
 		image.ImagePath = path
 		image.ImageSize = file.Size
+		image.ImageType = imageType
 		image.BusinessId = c.GetInt64("BusinessId")
 		image.CreateId = c.GetInt64("UserId")
 		image.CreateTime = schema.JsonTime(time.Now())

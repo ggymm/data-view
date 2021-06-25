@@ -18,6 +18,7 @@ type Image struct {
 	ImageName  string          `json:"image_name" xorm:"comment('图片名称') VARCHAR(200)"`
 	ImagePath  string          `json:"image_path" xorm:"comment('图片位置') VARCHAR(500)"`
 	ImageSize  int64           `json:"image_size" xorm:"comment('图片大小') BIGINT(20)"`
+	ImageType  string          `json:"image_type" xorm:"comment('图片类型') VARCHAR(50)"`
 	BusinessId int64           `json:"business_id" xorm:"comment('企业ID') BIGINT(20)"`
 	CreateId   int64           `json:"create_id" xorm:"comment('创建者ID') BIGINT(20)"`
 	CreateTime schema.JsonTime `json:"create_time" xorm:"comment('创建时间') DATETIME"`
@@ -45,13 +46,14 @@ func (m *ImageModel) GetPage(params schema.ImageQueryParam) ([]*Image, int64, er
 	}
 }
 
-func (m *ImageModel) GetList(businessId int64) ([]*Image, error) {
+func (m *ImageModel) GetList(businessId int64, imageType string) ([]*Image, error) {
 	var (
 		list  = make([]*Image, 0)
 		query = make(map[string]interface{})
 	)
 	query["business_id"] = businessId
 	query["del_flag"] = IsExist
+	query["image_type"] = imageType
 	// 获取查询列表
 	if err := m.Engine.Where(query).OrderBy(DefaultOrder).Find(&list); err != nil {
 		return list, err
