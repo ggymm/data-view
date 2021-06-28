@@ -34,26 +34,27 @@ type ViewInstance struct {
 }
 
 type ViewChartItem struct {
-	ItemId        int64  `json:"item_id" xorm:"not null pk autoincr BIGINT(20)"`
-	InstanceId    int64  `json:"instance_id" xorm:"BIGINT(20)"`
-	ItemElId      string `json:"elId" xorm:"VARCHAR(50)"`
-	ItemIndex     int    `json:"index" xorm:"INT(11)"`
-	ItemChartName string `json:"chartName" xorm:"VARCHAR(50)"`
-	ItemChartType string `json:"chartType" xorm:"VARCHAR(50)"`
-	ItemChartData string `json:"chartData" xorm:"TEXT"`
-	ItemData      string `json:"data" xorm:"TEXT"`
-	ItemRotate    int    `json:"rotate" xorm:"INT(11)"`
-	ItemShow      string `json:"show" xorm:"VARCHAR(10)"`
-	ItemLock      string `json:"lock" xorm:"VARCHAR(10)"`
-	ItemChoose    string `json:"choose" xorm:"VARCHAR(10)"`
-	ItemInterval  int64  `json:"interval" xorm:"BIGINT(20)"`
-	ItemOption    string `json:"option" xorm:"TEXT"`
-	ItemRefresh   string `json:"refresh" xorm:"VARCHAR(10)"`
-	ItemWidth     int64  `json:"width" xorm:"BIGINT(20)"`
-	ItemHeight    int64  `json:"height" xorm:"BIGINT(20)"`
-	ItemX         int64  `json:"x" xorm:"BIGINT(20)"`
-	ItemY         int64  `json:"y" xorm:"BIGINT(20)"`
-	ItemVersion   int64  `json:"version" xorm:"BIGINT(20)"`
+	ItemId           int64  `json:"item_id" xorm:"not null pk autoincr BIGINT(20)"`
+	InstanceId       int64  `json:"instance_id" xorm:"BIGINT(20)"`
+	ItemElId         string `json:"elId" xorm:"VARCHAR(50)"`
+	ItemIndex        int    `json:"index" xorm:"INT(11)"`
+	ItemChartName    string `json:"chartName" xorm:"VARCHAR(50)"`
+	ItemChartType    string `json:"chartType" xorm:"VARCHAR(50)"`
+	ItemChartVersion int64  `json:"chartVersion" xorm:"BIGINT(20)"`
+	ItemChartData    string `json:"chartData" xorm:"TEXT"`
+	ItemData         string `json:"data" xorm:"TEXT"`
+	ItemRotate       int    `json:"rotate" xorm:"INT(11)"`
+	ItemShow         string `json:"show" xorm:"VARCHAR(10)"`
+	ItemLock         string `json:"lock" xorm:"VARCHAR(10)"`
+	ItemChoose       string `json:"choose" xorm:"VARCHAR(10)"`
+	ItemInterval     int64  `json:"interval" xorm:"BIGINT(20)"`
+	ItemOption       string `json:"option" xorm:"TEXT"`
+	ItemRefresh      string `json:"refresh" xorm:"VARCHAR(10)"`
+	ItemWidth        int64  `json:"width" xorm:"BIGINT(20)"`
+	ItemHeight       int64  `json:"height" xorm:"BIGINT(20)"`
+	ItemX            int64  `json:"x" xorm:"BIGINT(20)"`
+	ItemY            int64  `json:"y" xorm:"BIGINT(20)"`
+	ItemVersion      int64  `json:"version" xorm:"BIGINT(20)"`
 }
 
 type ViewInstancePro struct {

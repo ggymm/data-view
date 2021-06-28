@@ -24,24 +24,25 @@ type ChartDataParams struct {
 }
 
 type ViewChartItem struct {
-	ItemElId      string `json:"elId"`
-	ItemIndex     int    `json:"index"`
-	ItemChartName string `json:"chartName"`
-	ItemChartType string `json:"chartType"`
-	ItemChartData string `json:"chartData"`
-	ItemData      string `json:"data"`
-	ItemRotate    int    `json:"rotate"`
-	ItemShow      string `json:"show"`
-	ItemLock      string `json:"lock"`
-	ItemChoose    string `json:"choose"`
-	ItemInterval  int64  `json:"interval"`
-	ItemOption    string `json:"option"`
-	ItemRefresh   string `json:"refresh"`
-	ItemWidth     int64  `json:"width"`
-	ItemHeight    int64  `json:"height"`
-	ItemX         int64  `json:"x"`
-	ItemY         int64  `json:"y"`
-	ItemVersion   int64  `json:"version"`
+	ItemElId         string `json:"elId"`
+	ItemIndex        int    `json:"index"`
+	ItemChartName    string `json:"chartName"`
+	ItemChartType    string `json:"chartType"`
+	ItemChartVersion int64  `json:"chartVersion"`
+	ItemChartData    string `json:"chartData"`
+	ItemData         string `json:"data"`
+	ItemRotate       int    `json:"rotate"`
+	ItemShow         string `json:"show"`
+	ItemLock         string `json:"lock"`
+	ItemChoose       string `json:"choose"`
+	ItemInterval     int64  `json:"interval"`
+	ItemOption       string `json:"option"`
+	ItemRefresh      string `json:"refresh"`
+	ItemWidth        int64  `json:"width"`
+	ItemHeight       int64  `json:"height"`
+	ItemX            int64  `json:"x"`
+	ItemY            int64  `json:"y"`
+	ItemVersion      int64  `json:"version"`
 }
 
 type CreateDataViewReq struct {
