@@ -1,0 +1,61 @@
+{
+  "status": 0,
+  "hitSugarSelf": true,
+  "msg": "",
+  "data": {
+    "columns": [
+      {
+        "id": "time",
+        "name": "时间",
+        "textAlign": "center"
+      },
+      {
+        "id": "goods",
+        "name": "物品",
+        "textAlign": "center"
+      },
+      {
+        "id": "num",
+        "name": "数量",
+        "textAlign": "center"
+      },
+      {
+        "id": "sum",
+        "name": "金额",
+        "textAlign": "center"
+      }
+    ],
+    "rows": [
+      {
+        "time": "01-30 04:51:32",
+        "goods": "物品1",
+        "num": 84,
+        "sum": 582821
+      },
+      {
+        "time": "01-30 14:00:32",
+        "goods": "物品2",
+        "num": 76,
+        "sum": 533955
+      },
+      {
+        "time": "01-30 05:18:32",
+        "goods": "物品4",
+        "num": 62,
+        "sum": 532826
+      },
+      {
+        "time": "01-30 03:24:32",
+        "goods": "物品3",
+        "num": 74,
+        "sum": 464793
+      },
+      {
+        "time": "01-29 18:12:32",
+        "goods": "物品5",
+        "num": 5,
+        "sum": 239839
+      }
+    ]
+  }
+}
