@@ -102,8 +102,8 @@ func (h *DataViewHandler) Update(c *gin.Context) {
 }
 
 func (h *DataViewHandler) GetChartData(c *gin.Context) {
-	var params *schema.ChartDataParams
-	if err := ParseQuery(c, &params); err != nil {
+	var params schema.ChartDataParams
+	if err := ParseJSON(c, &params); err != nil {
 		httpError(c, http.StatusBadRequest, err.Error())
 		return
 	}

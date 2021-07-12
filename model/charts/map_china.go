@@ -10,8 +10,8 @@ const MapChina = "MapChina"
 
 // MapChinaGetDataHandle
 // 中国地图
-var MapChinaGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB, params *schema.ChartDataParams) (map[string]interface{}, error) {
+var MapChinaGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB, params schema.ChartDataParams) (map[string]interface{}, error) {
 	return DatasetGetDataHandle.GetDataFromDB(db, params)
-}, RunGetDataFromCsv: func(params *schema.ChartDataParams) (map[string]interface{}, error) {
+}, RunGetDataFromCsv: func(params schema.ChartDataParams) (map[string]interface{}, error) {
 	return nil, nil
 }}

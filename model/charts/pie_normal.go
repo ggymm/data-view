@@ -8,8 +8,8 @@ import (
 
 const PieNormal = "PieNormal"
 
-var PieNormalGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB, params *schema.ChartDataParams) (map[string]interface{}, error) {
+var PieNormalGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB, params schema.ChartDataParams) (map[string]interface{}, error) {
 	return DatasetGetDataHandle.GetDataFromDB(db, params)
-}, RunGetDataFromCsv: func(params *schema.ChartDataParams) (map[string]interface{}, error) {
+}, RunGetDataFromCsv: func(params schema.ChartDataParams) (map[string]interface{}, error) {
 	return nil, nil
 }}

@@ -8,8 +8,8 @@ import (
 
 const Progress = "Progress"
 
-var ProgressGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB, params *schema.ChartDataParams) (map[string]interface{}, error) {
+var ProgressGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB, params schema.ChartDataParams) (map[string]interface{}, error) {
 	return CounterGetDataHandle.GetDataFromDB(db, params)
-}, RunGetDataFromCsv: func(params *schema.ChartDataParams) (map[string]interface{}, error) {
+}, RunGetDataFromCsv: func(params schema.ChartDataParams) (map[string]interface{}, error) {
 	return nil, nil
 }}

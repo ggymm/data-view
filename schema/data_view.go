@@ -6,21 +6,15 @@ type DataViewQueryParam struct {
 }
 
 type ChartDataParams struct {
-	// 基础字段
-	DataSourceType string `form:"dataSourceType"`
-	ChartType      string `form:"chartType"`
-	Database       int64  `form:"database"`
-	FileName       string `form:"fileName"`
-	Sql            string `form:"sql"`
-	OrderBy        string `form:"orderBy"`
-
-	// 图表扩展字段（基础字段）
-	Dimension string `form:"dimension"`
-	Name      string `form:"name"`
-	Value     string `form:"value"`
-
-	// 雷达图特殊字段
-	Max string `form:"max"`
+	DataSourceType string `json:"dataSourceType"` // 数据源类型
+	ChartType      string `json:"chartType"`      // 图表类型
+	Database       int64  `json:"database"`       // 数据库
+	Sql            string `json:"sql"`            // 查询SQL
+	Dimension      string `json:"dimension"`      // 分类字段
+	Name           string `json:"name"`           //
+	Value          string `json:"value"`          //
+	Max            string `json:"max"`            // 雷达图需要
+	FileName       string `json:"fileName"`       // 文件名称
 }
 
 type ViewChartItem struct {

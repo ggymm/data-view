@@ -11,7 +11,7 @@ import (
 
 const RadarNormal = "RadarNormal"
 
-var RadarNormalGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB, params *schema.ChartDataParams) (map[string]interface{}, error) {
+var RadarNormalGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB, params schema.ChartDataParams) (map[string]interface{}, error) {
 	if len(params.Name) == 0 ||
 		len(params.Value) == 0 ||
 		len(params.Dimension) == 0 ||
@@ -111,6 +111,6 @@ var RadarNormalGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx
 		"data":      fData,
 		"indicator": indicator,
 	}, nil
-}, RunGetDataFromCsv: func(params *schema.ChartDataParams) (map[string]interface{}, error) {
+}, RunGetDataFromCsv: func(params schema.ChartDataParams) (map[string]interface{}, error) {
 	return nil, nil
 }}

@@ -60,7 +60,7 @@ func (r *Router) NewRouter() (router *gin.Engine) {
 			dataView.GET("/:id", r.DataView.Get)
 			dataView.POST("/", r.DataView.Create)
 			dataView.PUT("/", r.DataView.Update)
-			dataView.GET("/chart-data", r.DataView.GetChartData)
+			dataView.POST("/chart-data", r.DataView.GetChartData)
 			// 图表测试获取数据接口
 			dataView.GET("/test-chart-data", r.DataView.GetTestChartData)
 		}

@@ -12,21 +12,27 @@ import (
 )
 
 type ChartData interface {
-	GetDataFromDB(db *sqlx.DB, chartDataParams *schema.ChartDataParams) (map[string]interface{}, error)
-	GetDataFromCsv(chartDataParams *schema.ChartDataParams) (map[string]interface{}, error)
+	GetDataFromDB(db *sqlx.DB, chartDataParams schema.ChartDataParams) (map[string]interface{}, error)
+	GetDataFromCsv(chartDataParams schema.ChartDataParams) (map[string]interface{}, error)
+	GetDataFromRest(chartDataParams schema.ChartDataParams) (map[string]interface{}, error)
 }
 
 type ChartDataHandler struct {
-	RunGetDataFromDB  func(db *sqlx.DB, chartDataParams *schema.ChartDataParams) (map[string]interface{}, error)
-	RunGetDataFromCsv func(chartDataParams *schema.ChartDataParams) (map[string]interface{}, error)
+	RunGetDataFromDB   func(db *sqlx.DB, chartDataParams schema.ChartDataParams) (map[string]interface{}, error)
+	RunGetDataFromCsv  func(chartDataParams schema.ChartDataParams) (map[string]interface{}, error)
+	RunGetDataFromRest func(chartDataParams schema.ChartDataParams) (map[string]interface{}, error)
 }
 
-func (handler *ChartDataHandler) GetDataFromDB(db *sqlx.DB, chartDataParams *schema.ChartDataParams) (map[string]interface{}, error) {
+func (handler *ChartDataHandler) GetDataFromDB(db *sqlx.DB, chartDataParams schema.ChartDataParams) (map[string]interface{}, error) {
 	return handler.RunGetDataFromDB(db, chartDataParams)
 }
 
-func (handler *ChartDataHandler) GetDataFromCsv(chartDataParams *schema.ChartDataParams) (map[string]interface{}, error) {
+func (handler *ChartDataHandler) GetDataFromCsv(chartDataParams schema.ChartDataParams) (map[string]interface{}, error) {
 	return handler.RunGetDataFromCsv(chartDataParams)
+}
+
+func (handler *ChartDataHandler) GetDataFromRest(chartDataParams schema.ChartDataParams) (map[string]interface{}, error) {
+	return handler.RunGetDataFromRest(chartDataParams)
 }
 
 // StrVal interface 转 string

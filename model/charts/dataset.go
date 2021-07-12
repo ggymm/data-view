@@ -16,7 +16,7 @@ const (
 	Dimension = "dimension"
 )
 
-var DatasetGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB, params *schema.ChartDataParams) (map[string]interface{}, error) {
+var DatasetGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB, params schema.ChartDataParams) (map[string]interface{}, error) {
 	if len(params.Name) == 0 || len(params.Value) == 0 {
 		return nil, errors.New("参数不完整")
 	}
@@ -122,6 +122,8 @@ var DatasetGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB,
 	dataset = append(dataset, dimensions)
 	dataset = append(dataset, source...)
 	return map[string]interface{}{Source: dataset}, nil
-}, RunGetDataFromCsv: func(chartDataParams *schema.ChartDataParams) (map[string]interface{}, error) {
+}, RunGetDataFromCsv: func(chartDataParams schema.ChartDataParams) (map[string]interface{}, error) {
+	return nil, nil
+}, RunGetDataFromRest: func(chartDataParams schema.ChartDataParams) (map[string]interface{}, error) {
 	return nil, nil
 }}

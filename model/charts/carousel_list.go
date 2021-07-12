@@ -15,7 +15,7 @@ const (
 const CarouselList = "CarouselList"
 
 // CarouselListGetDataHandle 轮播列表
-var CarouselListGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB, params *schema.ChartDataParams) (map[string]interface{}, error) {
+var CarouselListGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB, params schema.ChartDataParams) (map[string]interface{}, error) {
 	rows, err := db.Queryx(params.Sql)
 	if err != nil {
 		return nil, err
@@ -47,6 +47,6 @@ var CarouselListGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sql
 		body = append(body, item)
 	}
 	return map[string]interface{}{Header: header, Body: body}, nil
-}, RunGetDataFromCsv: func(params *schema.ChartDataParams) (map[string]interface{}, error) {
+}, RunGetDataFromCsv: func(params schema.ChartDataParams) (map[string]interface{}, error) {
 	return nil, nil
 }}

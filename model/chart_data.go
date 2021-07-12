@@ -16,47 +16,25 @@ var ChartDataHandlers = make(map[string]charts.ChartData)
 
 func init() {
 	ChartDataHandlers[charts.ScatterNormal] = charts.ScatterNormalGetDataHandle
-	//ChartDataHandlers["plotMap"] = charts.PlotMapGetDataHandle
 
 	ChartDataHandlers[charts.LineNormal] = charts.LineNormalGetDataHandle
 	ChartDataHandlers[charts.LineArea] = charts.LineAreaGetDataHandle
-	//ChartDataHandlers["lineStacking"] = charts.LineStackingGetDataHandle
 
 	ChartDataHandlers[charts.HistogramNormal] = charts.HistogramNormalGetDataHandle
 	ChartDataHandlers[charts.PictorialBar] = charts.PictorialBarGetDataHandle
-	//ChartDataHandlers["histogramGradient"] = charts.HistogramGradientGetDataHandle
-	//ChartDataHandlers["histogramGradientHorizontal"] = charts.HistogramGradientGetDataHandle
-	//ChartDataHandlers["histogramStacking"] = charts.HistogramStackingGetDataHandle
-	//ChartDataHandlers["histogramComplex"] = charts.HistogramComplexGetDataHandle
-	//ChartDataHandlers["histogramTwoBar"] = charts.HistogramTwoBarGetDataHandle
 
 	ChartDataHandlers[charts.MapChina] = charts.MapChinaGetDataHandle
-	//ChartDataHandlers["mapProvince"] = charts.MapProvinceGetDataHandle
 
 	ChartDataHandlers[charts.PieNormal] = charts.PieNormalGetDataHandle
-	//ChartDataHandlers["pieRing"] = charts.PieNormalGetDataHandle
-	//ChartDataHandlers["pieRings"] = charts.PieRingsGetDataHandle
-	//ChartDataHandlers["pie2D"] = charts.PieNormalGetDataHandle
-	//ChartDataHandlers["piePercent"] = charts.PiePercentGetDataHandle
 
 	ChartDataHandlers[charts.RadarNormal] = charts.RadarNormalGetDataHandle
 
-	//ChartDataHandlers["heatBasic"] = charts.HeatBasicGetDataHandle
-
-	//ChartDataHandlers["relationOne"] = charts.RelationOneGetDataHandle
-	//ChartDataHandlers["relationTwo"] = charts.RelationTwoGetDataHandle
-	//ChartDataHandlers["relationThree"] = charts.RelationThreeGetDataHandle
-	//ChartDataHandlers["relationFour"] = charts.RelationFourGetDataHandle
-	//ChartDataHandlers["relationFive"] = charts.RelationFiveGetDataHandle
-
-	//ChartDataHandlers["wordCloud"] = charts.PieNormalGetDataHandle
 	ChartDataHandlers[charts.CarouselList] = charts.CarouselListGetDataHandle
 	ChartDataHandlers[charts.Counter] = charts.CounterGetDataHandle
 	ChartDataHandlers[charts.Progress] = charts.ProgressGetDataHandle
-	//ChartDataHandlers["gauge"] = charts.GaugeGetDataHandle
 }
 
-func (m *DataViewModel) GetChartData(params *schema.ChartDataParams, dataSource *DataSource) (map[string]interface{}, error) {
+func (m *DataViewModel) GetChartData(params schema.ChartDataParams, dataSource *DataSource) (map[string]interface{}, error) {
 	var (
 		err        error
 		db         *sqlx.DB
@@ -67,6 +45,7 @@ func (m *DataViewModel) GetChartData(params *schema.ChartDataParams, dataSource 
 			_ = db.Close()
 		}
 	}()
+
 	// 此处判断图表类型
 	chartType := params.ChartType
 	// 此处判断图表数据源类型
@@ -104,7 +83,10 @@ func (m *DataViewModel) GetChartData(params *schema.ChartDataParams, dataSource 
 		}
 		return dataResult, nil
 	} else if strings.EqualFold(dataSourceType, Rest) {
-		return nil, errors.New("暂未实现")
+		if dataResult, err = ChartDataHandlers[chartType].GetDataFromRest(params); err != nil {
+			return dataResult, err
+		}
+		return dataResult, nil
 	} else {
 		return nil, errors.New("数据源类型错误")
 	}
