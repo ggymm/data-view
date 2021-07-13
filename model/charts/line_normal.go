@@ -14,6 +14,4 @@ var LineNormalGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.
 	return DatasetGetDataHandle.GetDataFromDB(db, params)
 }, RunGetDataFromCsv: func(params schema.ChartDataParams) (map[string]interface{}, error) {
 	return nil, nil
-}, RunGetDataFromRest: func(params schema.ChartDataParams) (map[string]interface{}, error) {
-	return nil, nil
 }}

@@ -124,6 +124,4 @@ var DatasetGetDataHandle = &ChartDataHandler{RunGetDataFromDB: func(db *sqlx.DB,
 	return map[string]interface{}{Source: dataset}, nil
 }, RunGetDataFromCsv: func(chartDataParams schema.ChartDataParams) (map[string]interface{}, error) {
 	return nil, nil
-}, RunGetDataFromRest: func(chartDataParams schema.ChartDataParams) (map[string]interface{}, error) {
-	return nil, nil
 }}

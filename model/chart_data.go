@@ -35,11 +35,7 @@ func init() {
 }
 
 func (m *DataViewModel) GetChartData(params schema.ChartDataParams) (map[string]interface{}, error) {
-	var (
-		err        error
-		db         *sqlx.DB
-		dataResult map[string]interface{}
-	)
+	var db *sqlx.DB
 	defer func() {
 		if db != nil {
 			_ = db.Close()
@@ -77,20 +73,12 @@ func (m *DataViewModel) GetChartData(params schema.ChartDataParams) (map[string]
 		if chartData == nil {
 			return nil, errors.New("图表类型错误")
 		}
-		if dataResult, err = chartData.GetDataFromDB(db, params); err != nil {
-			return dataResult, err
-		}
-		return dataResult, nil
+		return chartData.GetDataFromDB(db, params)
 	} else if strings.EqualFold(dataSourceType, File) {
-		if dataResult, err = ChartDataHandlers[chartType].GetDataFromCsv(params); err != nil {
-			return dataResult, err
-		}
-		return dataResult, nil
+		return ChartDataHandlers[chartType].GetDataFromCsv(params)
 	} else if strings.EqualFold(dataSourceType, Rest) {
-		if dataResult, err = ChartDataHandlers[chartType].GetDataFromRest(params); err != nil {
-			return dataResult, err
-		}
-		return dataResult, nil
+		// 直接获取数据返回
+		return nil, nil
 	} else {
 		return nil, errors.New("数据源类型错误")
 	}

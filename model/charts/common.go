@@ -1,12 +1,9 @@
 package charts
 
 import (
-	"encoding/json"
-	"math/rand"
-	"strconv"
-	"strings"
-
 	"data-view/schema"
+	"encoding/json"
+	"strconv"
 
 	"github.com/jmoiron/sqlx"
 )
@@ -14,13 +11,11 @@ import (
 type ChartData interface {
 	GetDataFromDB(db *sqlx.DB, chartDataParams schema.ChartDataParams) (map[string]interface{}, error)
 	GetDataFromCsv(chartDataParams schema.ChartDataParams) (map[string]interface{}, error)
-	GetDataFromRest(chartDataParams schema.ChartDataParams) (map[string]interface{}, error)
 }
 
 type ChartDataHandler struct {
-	RunGetDataFromDB   func(db *sqlx.DB, chartDataParams schema.ChartDataParams) (map[string]interface{}, error)
-	RunGetDataFromCsv  func(chartDataParams schema.ChartDataParams) (map[string]interface{}, error)
-	RunGetDataFromRest func(chartDataParams schema.ChartDataParams) (map[string]interface{}, error)
+	RunGetDataFromDB  func(db *sqlx.DB, chartDataParams schema.ChartDataParams) (map[string]interface{}, error)
+	RunGetDataFromCsv func(chartDataParams schema.ChartDataParams) (map[string]interface{}, error)
 }
 
 func (handler *ChartDataHandler) GetDataFromDB(db *sqlx.DB, chartDataParams schema.ChartDataParams) (map[string]interface{}, error) {
@@ -29,10 +24,6 @@ func (handler *ChartDataHandler) GetDataFromDB(db *sqlx.DB, chartDataParams sche
 
 func (handler *ChartDataHandler) GetDataFromCsv(chartDataParams schema.ChartDataParams) (map[string]interface{}, error) {
 	return handler.RunGetDataFromCsv(chartDataParams)
-}
-
-func (handler *ChartDataHandler) GetDataFromRest(chartDataParams schema.ChartDataParams) (map[string]interface{}, error) {
-	return handler.RunGetDataFromRest(chartDataParams)
 }
 
 // StrVal interface 转 string
@@ -105,56 +96,4 @@ func Duplicate(arr []string) (newArr []string) {
 		}
 	}
 	return
-}
-
-// CreateColor 生成随机颜色
-func CreateColor() string {
-	red := strings.ToUpper(strconv.FormatInt(int64(rand.Intn(256)), 16))
-	if len(red) == 1 {
-		red = "0" + red
-	}
-	blue := strings.ToUpper(strconv.FormatInt(int64(rand.Intn(256)), 16))
-	if len(blue) == 1 {
-		blue = "0" + blue
-	}
-	green := strings.ToUpper(strconv.FormatInt(int64(rand.Intn(256)), 16))
-	if len(green) == 1 {
-		green = "0" + green
-	}
-	return "#" + red + green + blue
-}
-
-// CountInArray 判断元素在数组中出现的次数
-func CountInArray(a string, b []string) int {
-	var result = 0
-	for i := 0; i < len(b); i++ {
-		if a == b[i] {
-			result++
-		}
-	}
-	return result
-}
-
-// GetIndexInArray 判断元素在数组中的位置
-func GetIndexInArray(a string, b []string) int {
-	var result = 0
-	for i := 0; i < len(b); i++ {
-		if a == b[i] {
-			result = i
-			break
-		}
-	}
-	return result
-}
-
-// IsExitInArray 判断元素在数组中是否存在
-func IsExitInArray(a string, b []string) bool {
-	var result = false
-	for i := 0; i < len(b); i++ {
-		if a == b[i] {
-			result = true
-			break
-		}
-	}
-	return result
 }
