@@ -13,7 +13,8 @@ import (
 var DataViewModelSet = wire.NewSet(wire.Struct(new(DataViewModel), "*"))
 
 type DataViewModel struct {
-	Engine *xorm.Engine
+	Engine          *xorm.Engine
+	DataSourceModel *DataSourceModel
 }
 
 type ViewInstance struct {

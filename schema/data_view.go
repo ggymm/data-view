@@ -13,7 +13,7 @@ type ChartDataParams struct {
 	Dimension      string `json:"dimension"`      // 分类字段
 	Name           string `json:"name"`           //
 	Value          string `json:"value"`          //
-	Max            string `json:"max"`            // 雷达图需要
+	Max            string `json:"max"`            // 雷达图
 	FileName       string `json:"fileName"`       // 文件名称
 }
 

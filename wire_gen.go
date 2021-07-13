@@ -32,7 +32,8 @@ func BuildInjector() (*Injector, func(), error) {
 		ImageModel: imageModel,
 	}
 	dataViewModel := &model.DataViewModel{
-		Engine: engine,
+		Engine:          engine,
+		DataSourceModel: dataSourceModel,
 	}
 	dataViewHandler := &handler.DataViewHandler{
 		DataViewModel:   dataViewModel,

@@ -107,12 +107,7 @@ func (h *DataViewHandler) GetChartData(c *gin.Context) {
 		httpError(c, http.StatusBadRequest, err.Error())
 		return
 	}
-	dataSource, err := h.DataSourceModel.Get(params.Database)
-	if err != nil {
-		httpError(c, http.StatusInternalServerError, err.Error())
-		return
-	}
-	if result, err := h.DataViewModel.GetChartData(params, dataSource); err != nil {
+	if result, err := h.DataViewModel.GetChartData(params); err != nil {
 		httpError(c, http.StatusInternalServerError, err.Error())
 		return
 	} else {

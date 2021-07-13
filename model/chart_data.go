@@ -34,7 +34,7 @@ func init() {
 	ChartDataHandlers[charts.Progress] = charts.ProgressGetDataHandle
 }
 
-func (m *DataViewModel) GetChartData(params schema.ChartDataParams, dataSource *DataSource) (map[string]interface{}, error) {
+func (m *DataViewModel) GetChartData(params schema.ChartDataParams) (map[string]interface{}, error) {
 	var (
 		err        error
 		db         *sqlx.DB
@@ -51,6 +51,10 @@ func (m *DataViewModel) GetChartData(params schema.ChartDataParams, dataSource *
 	// 此处判断图表数据源类型
 	dataSourceType := params.DataSourceType
 	if strings.EqualFold(dataSourceType, DataBase) {
+		dataSource, err := m.DataSourceModel.Get(params.Database)
+		if err != nil {
+			return nil, err
+		}
 		// 构建数据库访问对象
 		dataSourceType := dataSource.DataSourceType
 		if strings.EqualFold(dataSourceType, MySQL) {
