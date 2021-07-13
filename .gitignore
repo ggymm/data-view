@@ -1,9 +1,12 @@
+# 统一配置
 .idea
 vendor
+go.sum
+
+# 项目配置
+log
 _build/darwin
 _build/linux
 _build/windows
 _doc/data-view.sql
 _doc/data-view-template.sql
-log
-go.sum
