@@ -1,6 +1,8 @@
 package handler
 
 import (
+	"data-view/chart"
+	"encoding/json"
 	"net/http"
 	"strconv"
 
@@ -117,5 +119,13 @@ func (h *DataViewHandler) GetChartData(c *gin.Context) {
 }
 
 func (h *DataViewHandler) GetTestChartData(c *gin.Context) {
-
+	query := c.Query("chartType")
+	jsonData := chart.JsonDataMap[query]
+	resultData := make(map[string]interface{})
+	if err := json.Unmarshal([]byte(jsonData), &resultData); err != nil {
+		httpError(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+	returnJson(c, true, map[string]interface{}{"data": resultData})
+	return
 }

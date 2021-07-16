@@ -1,6 +1,8 @@
 package model
 
 import (
+	"data-view/chart"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"strings"
@@ -77,8 +79,12 @@ func (m *DataViewModel) GetChartData(params schema.ChartDataParams) (map[string]
 	} else if strings.EqualFold(dataSourceType, File) {
 		return ChartDataHandlers[chartType].GetDataFromCsv(params)
 	} else if strings.EqualFold(dataSourceType, Rest) {
-		// 直接获取数据返回
-		return nil, nil
+		jsonData := chart.JsonDataMap[params.ChartType]
+		dataset := make([]interface{}, 0)
+		if err := json.Unmarshal([]byte(jsonData), &dataset); err != nil {
+			return nil, err
+		}
+		return map[string]interface{}{"source": dataset}, nil
 	} else {
 		return nil, errors.New("数据源类型错误")
 	}

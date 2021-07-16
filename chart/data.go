@@ -2,6 +2,11 @@ package chart
 
 import _ "embed"
 
+var (
+	//go:embed example/scatter-normal.json
+	scatterNormal string
+)
+
 //goland:noinspection GoSnakeCaseUsage
 var (
 	//go:embed template6/hs.json
@@ -28,6 +33,10 @@ var (
 )
 
 var JsonDataMap = map[string]string{
+	// 基础示例数据
+	"ScatterNormal": scatterNormal,
+
+	// 图表数据
 	"template6_hs":         template6_hs,
 	"template6_rks":        template6_rks,
 	"template6_qs":         template6_qs,
